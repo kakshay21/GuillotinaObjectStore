@@ -1,0 +1,23 @@
+syntax = "proto3";
+// import "google/protobuf/any.proto";
+
+package gos;
+
+service Transaction {
+
+    // Starts a new transaction
+    rpc StartTransaction(StartTransactionRequest) returns (TxnId) {}
+}
+
+
+message StartTransactionRequest {
+    bool write = 1;
+    string user = 2;
+    //repeated string roles = 3;
+    string path = 4;
+}
+
+message TxnId {
+    uint64 tid = 1;
+    uint32 part = 2;
+}

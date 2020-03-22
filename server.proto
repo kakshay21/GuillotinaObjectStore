@@ -1,0 +1,353 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+
+package gos;
+
+service TransactionService {
+
+    // Starts a new transaction
+    rpc StartTransaction(StartTransactionRequest) returns (TxnId) {}
+
+    // Get the state of an object on a txn time
+    rpc GetOidState(GetOidTxn) returns (State) {}
+
+    // WRITE
+
+    rpc Store(stream StoreObject) returns (stream StoreResponse) {}
+
+    // DELETE
+
+    // Delete a state, index and relations of an object on a txn time and all subobjects (in vacuumm thread)
+    rpc DeleteOid(DeleteOidTxn) returns (DeleteResponse) {}
+
+    // COMMIT
+
+    rpc Commit(TxnId) returns (CommitStatus) {}
+
+    rpc Abort(TxnId) returns (AbortStatus) {}
+
+    // Introspection
+    rpc GetPageOfKeys(PageOidsRequest) returns (OidsResponse) {}
+
+    rpc Keys(KeysRequest) returns (OidsResponse) {}
+
+    rpc GetChild(GetChildRequest) returns (StatesResponse) {}
+
+    rpc GetChilden(GetChildenRequest) returns (StatesResponse) {}
+
+    rpc HasKey(GetChildRequest) returns (FoundResponse) {}
+
+    rpc LenChildren(LenChildenRequest) returns (LengthResponse) {}
+
+    // Stream all subobjects
+    rpc Items(GetOidTxn) returns (stream State) {}
+
+    rpc GetAnnotation(AnnotationRequest) returns (State) {}
+
+    rpc GetAnnotationKeys(GetOidTxn) returns (OidsResponse) {}
+
+    // Blobs
+    rpc WriteBlobChunk(WriteChunkRequest) returns (FoundResponse) {}
+
+    rpc ReadBlobChunk(ReadChunkRequest) returns (Blob) {}
+
+    rpc ReadBlobChunks(ReadChunksRequest) returns (stream Blob) {}
+
+    rpc DelBlobChunks(DelBlobRequest) returns (stream Blob) {}
+
+    // Stats
+    rpc GetTotalNumberOfObjects(TxnId) returns (LengthResponse) {}
+
+    rpc GetTotalNumberOfResources(TxnId) returns (LengthResponse) {}
+
+    rpc GetTotalResourcesOfType(TxnResourceRequest) returns (LengthResponse) {}
+
+    // Batch
+    rpc GetPageStateOidOfType(TxnResourcePageRequest) returns (stream State) {}
+    rpc GetPageStateOfType(TxnResourcePageRequest) returns (stream State) {}
+
+    // Search
+    rpc SearchState(SearchRequest) returns (stream State) {}
+
+    // // Introspect
+    // rpc GetActiveTransactions() returns (Transactions) {}
+
+}
+
+
+message StartTransactionRequest {
+    bool write = 1;
+    string user = 2;
+    repeated string roles = 3;
+    string path = 4;
+}
+
+message TxnId {
+    uint64 tid = 1;
+    uint32 part = 2;
+}
+
+message GetOidTxn {
+    uint64 tid = 1;
+    string oid = 2;
+    bool update = 3;
+}
+
+message DeleteOidTxn {
+    uint64 tid = 1;
+    string oid = 2;
+}
+
+message DeleteResponse {
+    bool result = 1;
+}
+
+
+message GetIdTxn {
+    uint64 tid = 1;
+    string oid = 2;
+    bool update = 3;
+}
+
+
+message OidTxnRelation {
+    uint64 tid = 1;
+    string oid = 2;
+    string relation = 3;
+}
+
+message State {
+    bytes state = 1;
+    string of = 2;
+    string parent_id = 3;
+    string id = 4;
+    string type = 5;
+    string otid = 6;
+}
+
+message StoreObject {
+    uint64 tid = 1;
+    uint32 part = 2;
+    string uid = 3;
+    repeated string path = 4;
+    bytes state = 5;
+    Metadata metadata = 6;
+    RelationState relations = 7;
+    FTSState fts = 8;
+    SecurityState security = 9;
+    string of = 10;
+    string parent_id = 11;
+    string id = 12;
+    string type = 13;
+    string otid = 14;
+}
+
+message Int {
+    int64 value = 1;
+}
+
+message String {
+    string value = 1;
+}
+
+message Metadata {
+    map<string, google.protobuf.Any> fields = 1;
+    bool merge = 2;
+}
+
+message FTSState {
+    map<string, google.protobuf.Any> fields = 1;
+    bool merge = 2;
+}
+
+message RelationStoreOid {
+    repeated string name = 1;
+}
+
+message Relation {
+    string destination = 1;
+    bool dual = 2;
+    map<string, google.protobuf.Any> properties = 3;
+}
+
+message RelationState {
+    repeated Relation state = 3;
+    bool merge = 4;
+}
+
+message SecurityState {
+    repeated string allow_user = 1;
+    repeated string allow_role = 2;
+    repeated string deny_user = 3;
+    repeated string deny_role = 4;
+    repeated string single_user = 5;
+    repeated string single_role = 6;
+    bool merge = 7;
+}
+
+message StoreResponse {
+    bool ok = 1;
+    int32 time = 2;
+    Conflict conflict = 3;
+    string uid = 4;
+}
+
+message TxnSet {
+    uint64 tid = 1;
+    repeated string zoid = 2;
+}
+
+message CommitStatus {
+    bool ok = 1;
+    repeated Conflict conflics = 2;
+}
+
+message AbortStatus {}
+
+// should be on the backend?
+
+message Conflict {
+    string zoid = 1;
+    State real_state = 2;
+    State proposed_state = 3;
+}
+
+// Introspection
+
+message PageOidsRequest {
+    uint64 tid = 1;
+    string parent_zoid = 2;
+    int32 page = 3;
+    int64 page_size = 4;
+}
+
+message OidsResponse {
+    uint64 tid = 1;
+    repeated string zoid = 2;
+}
+
+message KeysRequest {
+    uint64 tid = 1;
+    string parent_zoid = 2;
+}
+
+message GetChildRequest {
+    uint64 tid = 1;
+    string parent_zoid = 2;
+    string id = 3;
+}
+
+message GetChildenRequest {
+    uint64 tid = 1;
+    string parent_zoid = 2;
+    repeated string id = 3;
+}
+
+message StatesResponse {
+    repeated State state = 1;
+}
+
+message FoundResponse {
+    bool found = 1;
+}
+
+message LengthResponse {
+    uint64 length = 1;
+}
+
+message LenChildenRequest {
+    uint64 tid = 1;
+    string parent = 2;
+}
+
+
+message AnnotationRequest {
+    uint64 tid = 1;
+    string zoid = 2;
+    string id = 3;
+}
+
+// Blobs
+
+message WriteChunkRequest {
+    uint64 tid = 1;
+    string bid = 2;
+    string zoid = 3;
+    uint32 chunk_index = 4;
+    bytes data = 5;
+}
+
+message Blob {
+    uint32 chunk_index = 1;
+    bytes data = 2;
+}
+
+message ReadChunkRequest {
+    uint64 tid = 1;
+    string bid = 2;
+    uint32 chunk_index = 3;
+}
+
+message ReadChunksRequest {
+    uint64 tid = 1;
+    string bid = 2;
+}
+
+message DelBlobRequest {
+    uint64 tid = 1;
+    string bid = 2;
+}
+
+// Batch
+
+message TxnResourcePageRequest {
+    uint64 tid = 1;
+    string type = 2;
+    int32 page = 3;
+    int64 page_size = 4;
+}
+
+message TxnResourceRequest {
+    uint64 tid = 1;
+    string type = 2;
+}
+
+// Search
+
+message SearchRequest {
+    uint64 tid = 1;
+    uint32 part = 2;
+    string type = 3;
+    repeated string path = 4;
+    int32 page = 5;
+    int64 page_size = 6;
+
+    // Relation
+    map<string, google.protobuf.Any> relation = 7;
+
+    // Index
+    message SearchOperation {
+        enum Operations {
+            IN = 0;
+            NOT = 1;
+            GTE = 2;
+            LTE = 3;
+            EQ = 4;
+        }
+
+        SearchOperation op = 1;
+        google.protobuf.Any value = 2;
+    }
+    map<string, SearchOperation> index = 8;
+
+    map<string, SearchOperation> fts = 9;
+
+    // Security
+    SearchSecurity security = 12;
+
+}
+
+message SearchSecurity {
+    string user = 1;
+    repeated string role = 2;
+}
