@@ -5,8 +5,8 @@ extern crate log;
 
 #[path = "log_util.rs"]
 mod log_util;
-mod guillotina;
-mod guillotina_grpc;
+mod transaction;
+mod transaction_grpc;
 
 use std::io::Read;
 use std::sync::Arc;
@@ -15,16 +15,16 @@ use std::{io, thread};
 use futures::sync::oneshot;
 use futures::Future;
 use grpcio::{ChannelBuilder, Environment, ResourceQuota, ServerBuilder};
-use guillotina_grpc::Transaction;
+use transaction_grpc::Transaction;
 
 #[derive(Clone)]
 struct TransactionService;
 
 impl Transaction for TransactionService {
-    fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: guillotina::StartTransactionRequest, sink: ::grpcio::UnarySink<guillotina::TxnId>) {
+    fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<transaction::TxnId>) {
         let write = req.get_write();
         //  get transaction id from db
-        let mut txn = guillotina::TxnId::default();
+        let mut txn = transaction::TxnId::default();
         txn.set_tid(123);
         txn.set_part(456);
         let f = sink
@@ -37,7 +37,7 @@ impl Transaction for TransactionService {
 fn main() {
     let _guard = log_util::init_log(None);
     let env = Arc::new(Environment::new(1));
-    let service = guillotina_grpc::create_transaction(TransactionService);
+    let service = transaction_grpc::create_transaction(TransactionService);
 
     let quota = ResourceQuota::new(Some("HelloServerQuota")).resize_memory(1024 * 1024);
     let ch_builder = ChannelBuilder::new(env.clone()).set_resource_quota(quota);

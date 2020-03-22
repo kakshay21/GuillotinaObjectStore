@@ -18,7 +18,7 @@
 #![allow(unused_imports)]
 #![allow(unused_results)]
 
-const METHOD_TRANSACTION_START_TRANSACTION: ::grpcio::Method<super::guillotina::StartTransactionRequest, super::guillotina::TxnId> = ::grpcio::Method {
+const METHOD_TRANSACTION_START_TRANSACTION: ::grpcio::Method<super::transaction::StartTransactionRequest, super::transaction::TxnId> = ::grpcio::Method {
     ty: ::grpcio::MethodType::Unary,
     name: "/gos.Transaction/StartTransaction",
     req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
@@ -37,19 +37,19 @@ impl TransactionClient {
         }
     }
 
-    pub fn start_transaction_opt(&self, req: &super::guillotina::StartTransactionRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::guillotina::TxnId> {
+    pub fn start_transaction_opt(&self, req: &super::transaction::StartTransactionRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::transaction::TxnId> {
         self.client.unary_call(&METHOD_TRANSACTION_START_TRANSACTION, req, opt)
     }
 
-    pub fn start_transaction(&self, req: &super::guillotina::StartTransactionRequest) -> ::grpcio::Result<super::guillotina::TxnId> {
+    pub fn start_transaction(&self, req: &super::transaction::StartTransactionRequest) -> ::grpcio::Result<super::transaction::TxnId> {
         self.start_transaction_opt(req, ::grpcio::CallOption::default())
     }
 
-    pub fn start_transaction_async_opt(&self, req: &super::guillotina::StartTransactionRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::guillotina::TxnId>> {
+    pub fn start_transaction_async_opt(&self, req: &super::transaction::StartTransactionRequest, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::TxnId>> {
         self.client.unary_call_async(&METHOD_TRANSACTION_START_TRANSACTION, req, opt)
     }
 
-    pub fn start_transaction_async(&self, req: &super::guillotina::StartTransactionRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::guillotina::TxnId>> {
+    pub fn start_transaction_async(&self, req: &super::transaction::StartTransactionRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::TxnId>> {
         self.start_transaction_async_opt(req, ::grpcio::CallOption::default())
     }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
@@ -58,7 +58,7 @@ impl TransactionClient {
 }
 
 pub trait Transaction {
-    fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: super::guillotina::StartTransactionRequest, sink: ::grpcio::UnarySink<super::guillotina::TxnId>);
+    fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<super::transaction::TxnId>);
 }
 
 pub fn create_transaction<S: Transaction + Send + Clone + 'static>(s: S) -> ::grpcio::Service {

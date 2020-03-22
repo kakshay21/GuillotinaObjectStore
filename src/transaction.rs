@@ -17,7 +17,7 @@
 #![allow(unsafe_code)]
 #![allow(unused_imports)]
 #![allow(unused_results)]
-//! Generated file from `guillotina.proto`
+//! Generated file from `transaction.proto`
 
 use protobuf::Message as Message_imported_for_functions;
 use protobuf::ProtobufEnum as ProtobufEnum_imported_for_functions;
@@ -470,7 +470,7 @@ impl ::protobuf::reflect::ProtobufValue for TxnId {
 }
 
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x10guillotina.proto\x12\x03gos\"W\n\x17StartTransactionRequest\x12\
+    \n\x11transaction.proto\x12\x03gos\"W\n\x17StartTransactionRequest\x12\
     \x14\n\x05write\x18\x01\x20\x01(\x08R\x05write\x12\x12\n\x04user\x18\x02\
     \x20\x01(\tR\x04user\x12\x12\n\x04path\x18\x04\x20\x01(\tR\x04path\"-\n\
     \x05TxnId\x12\x10\n\x03tid\x18\x01\x20\x01(\x04R\x03tid\x12\x12\n\x04par\
