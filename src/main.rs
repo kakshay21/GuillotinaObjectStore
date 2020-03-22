@@ -2,6 +2,7 @@
 
 #[macro_use]
 extern crate log;
+extern crate rocksdb;
 
 #[path = "log_util.rs"]
 mod log_util;
@@ -15,21 +16,42 @@ use std::{io, thread};
 use futures::sync::oneshot;
 use futures::Future;
 use grpcio::{ChannelBuilder, Environment, ResourceQuota, ServerBuilder};
+use rocksdb::{DB, Writable};
 use transaction_grpc::Transaction;
 
 #[derive(Clone)]
 struct TransactionService;
 
+fn intialize_db(path: &str) -> DB {
+    let db = DB::open_default(&path).unwrap();
+    return db;
+}
+
+fn db_write(db: &DB, key: &str, value: &str) -> bool {
+    let val = db.put(&key.as_bytes(), &value.as_bytes());
+    return val.is_ok();
+}
+
+fn db_delete(db: &DB, key: &str) -> bool {
+    let val = db.delete(key.as_bytes());
+    return val.is_ok();
+}
+
 impl Transaction for TransactionService {
     fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<transaction::TxnId>) {
-        let write = req.get_write();
-        //  get transaction id from db
+        let write = req.get_user();
+        let db: DB = intialize_db("localdb");
+        db_write(&db, write, "1234");
+        let r = db.get(write.as_bytes()).unwrap().unwrap();
+        let value = r.to_utf8().unwrap();
+        let tid: u64 = value.parse().unwrap();
         let mut txn = transaction::TxnId::default();
-        txn.set_tid(123);
+        txn.set_tid(tid);
         txn.set_part(456);
+        db_delete(&db, write);
         let f = sink
             .success(txn)
-            .map_err(move |e| error!("failed to reply {:?}: {:?}\n payload: {:?}", req, e, write));
+            .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
         ctx.spawn(f)
     }
 }
