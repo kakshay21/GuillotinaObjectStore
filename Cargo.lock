@@ -75,9 +75,29 @@ dependencies = [
  "cexpr",
  "cfg-if",
  "clang-sys",
+ "lazy_static",
+ "peeking_take_while",
+ "proc-macro2",
+ "quote",
+ "regex",
+ "rustc-hash",
+ "shlex",
+]
+
+[[package]]
+name = "bindgen"
+version = "0.53.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "99de13bb6361e01e493b3db7928085dcc474b7ba4f5481818e53a89d76b8393f"
+dependencies = [
+ "bitflags",
+ "cexpr",
+ "cfg-if",
+ "clang-sys",
  "clap",
  "env_logger",
  "lazy_static",
+ "lazycell",
  "log",
  "peeking_take_while",
  "proc-macro2",
@@ -110,16 +130,6 @@ name = "bytes"
 version = "0.5.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "130aac562c0dd69c56b3b1cc8ffd2e17be31d0b6c25b61c96b76231aa23e39e1"
-
-[[package]]
-name = "bzip2-sys"
-version = "0.1.8+1.0.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "05305b41c5034ff0e93937ac64133d109b5a2660114ec45e9760bc6816d83038"
-dependencies = [
- "cc",
- "libc",
-]
 
 [[package]]
 name = "cc"
@@ -298,9 +308,9 @@ checksum = "bb1f6b1ce1c140482ea30ddd3335fc0024ac7ee112895426e0a629a6c20adfe3"
 
 [[package]]
 name = "env_logger"
-version = "0.6.2"
+version = "0.7.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "aafcde04e90a5226a6443b7aabdb016ba2f8307c847d524724bd9b346dd1a2d3"
+checksum = "44533bbbb3bb3c1fa17d9f2e4e38bbbaf8396ba82193c4cb1b6445d711445d36"
 dependencies = [
  "atty",
  "humantime",
@@ -399,7 +409,7 @@ version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "48b1b6365d95c795aa3840b19c5364ad0a4bf82bfd48b2f9185719b9f8e614a7"
 dependencies = [
- "bindgen",
+ "bindgen 0.51.1",
  "cc",
  "cmake",
  "libc",
@@ -457,6 +467,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 
 [[package]]
+name = "lazycell"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b294d6fa9ee409a054354afc4352b0b9ef7ca222c69b8812cbea9e7d2bf3783f"
+
+[[package]]
 name = "libc"
 version = "0.2.68"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -473,35 +489,15 @@ dependencies = [
 ]
 
 [[package]]
-name = "librocksdb_sys"
-version = "0.1.0"
-source = "git+https://github.com/tikv/rust-rocksdb.git#c39275a7119809ce18365b391d586ea38adb7cd9"
+name = "librocksdb-sys"
+version = "6.6.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4e3b727e2dd20ec2fb7ed93f23d9fd5328a0871185485ebdaff007b47d3e27e4"
 dependencies = [
- "bindgen",
- "bzip2-sys",
+ "bindgen 0.53.1",
  "cc",
- "cmake",
+ "glob",
  "libc",
- "libtitan_sys",
- "libz-sys",
- "lz4-sys",
- "snappy-sys",
- "zstd-sys",
-]
-
-[[package]]
-name = "libtitan_sys"
-version = "0.0.1"
-source = "git+https://github.com/tikv/rust-rocksdb.git#c39275a7119809ce18365b391d586ea38adb7cd9"
-dependencies = [
- "bzip2-sys",
- "cc",
- "cmake",
- "libc",
- "libz-sys",
- "lz4-sys",
- "snappy-sys",
- "zstd-sys",
 ]
 
 [[package]]
@@ -523,15 +519,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "14b6052be84e6b71ab17edffc2eeabf5c2c3ae1fdb464aae35ac50c67a44e1f7"
 dependencies = [
  "cfg-if",
-]
-
-[[package]]
-name = "lz4-sys"
-version = "1.8.3"
-source = "git+https://github.com/busyjay/lz4-rs.git?branch=adjust-build#5a8afe4010c67899fc7af876a58d67fd6269bf81"
-dependencies = [
- "cc",
- "libc",
 ]
 
 [[package]]
@@ -755,11 +742,12 @@ checksum = "7fe5bd57d1d7414c6b5ed48563a2c855d995ff777729dcd91c369ec7fea395ae"
 
 [[package]]
 name = "rocksdb"
-version = "0.3.0"
-source = "git+https://github.com/tikv/rust-rocksdb.git#c39275a7119809ce18365b391d586ea38adb7cd9"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "12069b106981c6103d3eab7dd1c86751482d0779a520b7c14954c8b586c1e643"
 dependencies = [
  "libc",
- "librocksdb_sys",
+ "librocksdb-sys",
 ]
 
 [[package]]
@@ -887,16 +875,6 @@ dependencies = [
  "slog",
  "term",
  "thread_local",
-]
-
-[[package]]
-name = "snappy-sys"
-version = "0.1.0"
-source = "git+https://github.com/busyjay/rust-snappy.git?branch=static-link#8c12738bad811397600455d6982aff754ea2ac44"
-dependencies = [
- "cmake",
- "libc",
- "pkg-config",
 ]
 
 [[package]]
@@ -1056,14 +1034,3 @@ name = "winapi-x86_64-pc-windows-gnu"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
-
-[[package]]
-name = "zstd-sys"
-version = "1.4.15+zstd.1.4.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "89719b034dc22d240d5b407fb0a3fe6d29952c181cff9a9f95c0bd40b4f8f7d8"
-dependencies = [
- "cc",
- "glob",
- "libc",
-]
