@@ -2,3 +2,5 @@
 *.DS_Store
 /localdb
 .vscode
+*__pycache__
+*mypy_cache

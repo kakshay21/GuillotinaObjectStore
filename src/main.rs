@@ -23,8 +23,7 @@ use transaction_grpc::Transaction;
 struct TransactionService;
 
 fn intialize_db(path: &str) -> DB {
-    let db = DB::open_default(&path).unwrap();
-    return db;
+    return DB::open_default(&path).unwrap();
 }
 
 fn db_write(db: &DB, key: &str, value: &str) -> bool {
