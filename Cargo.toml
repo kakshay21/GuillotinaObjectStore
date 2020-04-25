@@ -1,5 +1,5 @@
 [package]
-name = "grocksdb"
+name = "gobject"
 version = "0.1.0"
 authors = ["Kumar Akshay <k.akshay9721@gmail.com>"]
 edition = "2018"
@@ -11,11 +11,11 @@ rocksdb = "0.13.0"
 grpcio-sys = "0.5.0"
 libc = "0.2"
 futures = "^0.1.15"
-protobuf = "2.0"
+protobuf = "2.14.0"
 prost = { version = "0.6", optional = true }
 bytes = { version = "0.5", optional = true }
 log = "0.4"
-grpcio = "0.5.0"
+grpcio = "0.5.1"
 serde_json = "1.0"
 serde = "1.0"
 serde_derive = "1.0"

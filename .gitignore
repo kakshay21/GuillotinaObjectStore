@@ -1,9 +1,9 @@
 /target
 *.DS_Store
-/localdb
-.vscode
+*.vscode
+*.mypy_cache
 *__pycache__
 *mypy_cache
 *env
 *.idea
-localdb
+*localdb
