@@ -1,11 +1,24 @@
 from __future__ import print_function
-import logging
+from google.protobuf import json_format
+from guillotina.behaviors.dublincore import IDublinCore
+from guillotina.json.deserialize_value import schema_compatible
 
 import grpc
+import jsonschema
+import logging
+import string
+import time
 
-import transaction_pb2
-import transaction_pb2_grpc
+import guillotina_grpc.transaction_pb2 as protobuff
+import guillotina_grpc.transaction_pb2_grpc as grpc_server
 
+TEST_PAYLOAD = {
+    "tags": '1000',
+    "creation_date": "2020-01-02T19:07:48.748922Z",
+    "effective_date": "2020-01-02T19:07:48.748922Z",
+    "expiration_date": "2020-01-02T19:07:48.748922Z",
+    "creators": 'xyz',
+}
 
 def run():
     # NOTE(gRPC Python Team): .close() is possible on a channel and should be
@@ -18,18 +31,25 @@ def run():
                                         ('grpc.enable_retries', 0),
                                         ('grpc.keepalive_timeout_ms', 10000)
                                        ]) as channel:
-        stub = transaction_pb2_grpc.TransactionStub(channel)
+        stub = grpc_server.TransactionStub(channel)
         # Timeout in seconds.
         # Please refer gRPC Python documents for more detail. https://grpc.io/grpc/python/grpc.html
+
         response = stub.StartTransaction(
-            transaction_pb2.StartTransactionRequest(write=True, user='akshay', path='/home'),
+            protobuff.StartTransactionRequest(write=True, user='akshay', path='/home'),
             timeout=10
         )
 
         response2 = stub.GetOidState(
-            transaction_pb2.GetOidTxn(tid=10, oid='akshay', update=True),
+            protobuff.GetOidTxn(tid=10, oid='akshay', update=True),
             timeout=10
         )
+
+        response3 = stub.SaveDublinCore(
+            json_format.ParseDict(TEST_PAYLOAD, protobuff.DublinCore()),
+            timeout=10
+        )
+    print(response3)
     print(response2)
     print(response)
 

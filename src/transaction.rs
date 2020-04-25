@@ -1063,73 +1063,473 @@ impl ::protobuf::reflect::ProtobufValue for State {
     }
 }
 
+#[derive(PartialEq,Clone,Default)]
+pub struct DublinCore {
+    // message fields
+    pub tags: ::std::string::String,
+    pub creation_date: ::protobuf::SingularPtrField<::protobuf::well_known_types::Timestamp>,
+    pub effective_date: ::protobuf::SingularPtrField<::protobuf::well_known_types::Timestamp>,
+    pub expiration_date: ::protobuf::SingularPtrField<::protobuf::well_known_types::Timestamp>,
+    pub creators: ::std::string::String,
+    // special fields
+    pub unknown_fields: ::protobuf::UnknownFields,
+    pub cached_size: ::protobuf::CachedSize,
+}
+
+impl<'a> ::std::default::Default for &'a DublinCore {
+    fn default() -> &'a DublinCore {
+        <DublinCore as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl DublinCore {
+    pub fn new() -> DublinCore {
+        ::std::default::Default::default()
+    }
+
+    // string tags = 1;
+
+
+    pub fn get_tags(&self) -> &str {
+        &self.tags
+    }
+    pub fn clear_tags(&mut self) {
+        self.tags.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_tags(&mut self, v: ::std::string::String) {
+        self.tags = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_tags(&mut self) -> &mut ::std::string::String {
+        &mut self.tags
+    }
+
+    // Take field
+    pub fn take_tags(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.tags, ::std::string::String::new())
+    }
+
+    // .google.protobuf.Timestamp creation_date = 2;
+
+
+    pub fn get_creation_date(&self) -> &::protobuf::well_known_types::Timestamp {
+        self.creation_date.as_ref().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::default_instance())
+    }
+    pub fn clear_creation_date(&mut self) {
+        self.creation_date.clear();
+    }
+
+    pub fn has_creation_date(&self) -> bool {
+        self.creation_date.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_creation_date(&mut self, v: ::protobuf::well_known_types::Timestamp) {
+        self.creation_date = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_creation_date(&mut self) -> &mut ::protobuf::well_known_types::Timestamp {
+        if self.creation_date.is_none() {
+            self.creation_date.set_default();
+        }
+        self.creation_date.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_creation_date(&mut self) -> ::protobuf::well_known_types::Timestamp {
+        self.creation_date.take().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::new())
+    }
+
+    // .google.protobuf.Timestamp effective_date = 3;
+
+
+    pub fn get_effective_date(&self) -> &::protobuf::well_known_types::Timestamp {
+        self.effective_date.as_ref().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::default_instance())
+    }
+    pub fn clear_effective_date(&mut self) {
+        self.effective_date.clear();
+    }
+
+    pub fn has_effective_date(&self) -> bool {
+        self.effective_date.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_effective_date(&mut self, v: ::protobuf::well_known_types::Timestamp) {
+        self.effective_date = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_effective_date(&mut self) -> &mut ::protobuf::well_known_types::Timestamp {
+        if self.effective_date.is_none() {
+            self.effective_date.set_default();
+        }
+        self.effective_date.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_effective_date(&mut self) -> ::protobuf::well_known_types::Timestamp {
+        self.effective_date.take().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::new())
+    }
+
+    // .google.protobuf.Timestamp expiration_date = 4;
+
+
+    pub fn get_expiration_date(&self) -> &::protobuf::well_known_types::Timestamp {
+        self.expiration_date.as_ref().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::default_instance())
+    }
+    pub fn clear_expiration_date(&mut self) {
+        self.expiration_date.clear();
+    }
+
+    pub fn has_expiration_date(&self) -> bool {
+        self.expiration_date.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_expiration_date(&mut self, v: ::protobuf::well_known_types::Timestamp) {
+        self.expiration_date = ::protobuf::SingularPtrField::some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_expiration_date(&mut self) -> &mut ::protobuf::well_known_types::Timestamp {
+        if self.expiration_date.is_none() {
+            self.expiration_date.set_default();
+        }
+        self.expiration_date.as_mut().unwrap()
+    }
+
+    // Take field
+    pub fn take_expiration_date(&mut self) -> ::protobuf::well_known_types::Timestamp {
+        self.expiration_date.take().unwrap_or_else(|| ::protobuf::well_known_types::Timestamp::new())
+    }
+
+    // string creators = 5;
+
+
+    pub fn get_creators(&self) -> &str {
+        &self.creators
+    }
+    pub fn clear_creators(&mut self) {
+        self.creators.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_creators(&mut self, v: ::std::string::String) {
+        self.creators = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_creators(&mut self) -> &mut ::std::string::String {
+        &mut self.creators
+    }
+
+    // Take field
+    pub fn take_creators(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.creators, ::std::string::String::new())
+    }
+}
+
+impl ::protobuf::Message for DublinCore {
+    fn is_initialized(&self) -> bool {
+        for v in &self.creation_date {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.effective_date {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        for v in &self.expiration_date {
+            if !v.is_initialized() {
+                return false;
+            }
+        };
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.tags)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.creation_date)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.effective_date)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_singular_message_into(wire_type, is, &mut self.expiration_date)?;
+                },
+                5 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.creators)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if !self.tags.is_empty() {
+            my_size += ::protobuf::rt::string_size(1, &self.tags);
+        }
+        if let Some(ref v) = self.creation_date.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if let Some(ref v) = self.effective_date.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if let Some(ref v) = self.expiration_date.as_ref() {
+            let len = v.compute_size();
+            my_size += 1 + ::protobuf::rt::compute_raw_varint32_size(len) + len;
+        }
+        if !self.creators.is_empty() {
+            my_size += ::protobuf::rt::string_size(5, &self.creators);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        if !self.tags.is_empty() {
+            os.write_string(1, &self.tags)?;
+        }
+        if let Some(ref v) = self.creation_date.as_ref() {
+            os.write_tag(2, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.effective_date.as_ref() {
+            os.write_tag(3, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if let Some(ref v) = self.expiration_date.as_ref() {
+            os.write_tag(4, ::protobuf::wire_format::WireTypeLengthDelimited)?;
+            os.write_raw_varint32(v.get_cached_size())?;
+            v.write_to_with_cached_sizes(os)?;
+        }
+        if !self.creators.is_empty() {
+            os.write_string(5, &self.creators)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
+    }
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> DublinCore {
+        DublinCore::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy::INIT;
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "tags",
+                    |m: &DublinCore| { &m.tags },
+                    |m: &mut DublinCore| { &mut m.tags },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<::protobuf::well_known_types::Timestamp>>(
+                    "creation_date",
+                    |m: &DublinCore| { &m.creation_date },
+                    |m: &mut DublinCore| { &mut m.creation_date },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<::protobuf::well_known_types::Timestamp>>(
+                    "effective_date",
+                    |m: &DublinCore| { &m.effective_date },
+                    |m: &mut DublinCore| { &mut m.effective_date },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_singular_ptr_field_accessor::<_, ::protobuf::types::ProtobufTypeMessage<::protobuf::well_known_types::Timestamp>>(
+                    "expiration_date",
+                    |m: &DublinCore| { &m.expiration_date },
+                    |m: &mut DublinCore| { &mut m.expiration_date },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "creators",
+                    |m: &DublinCore| { &m.creators },
+                    |m: &mut DublinCore| { &mut m.creators },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new_pb_name::<DublinCore>(
+                    "DublinCore",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static DublinCore {
+        static mut instance: ::protobuf::lazy::Lazy<DublinCore> = ::protobuf::lazy::Lazy::INIT;
+        unsafe {
+            instance.get(DublinCore::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for DublinCore {
+    fn clear(&mut self) {
+        self.tags.clear();
+        self.creation_date.clear();
+        self.effective_date.clear();
+        self.expiration_date.clear();
+        self.creators.clear();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for DublinCore {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for DublinCore {
+    fn as_ref(&self) -> ::protobuf::reflect::ReflectValueRef {
+        ::protobuf::reflect::ReflectValueRef::Message(self)
+    }
+}
+
 static file_descriptor_proto_data: &'static [u8] = b"\
-    \n\x11transaction.proto\x12\x03gos\"W\n\x17StartTransactionRequest\x12\
-    \x14\n\x05write\x18\x01\x20\x01(\x08R\x05write\x12\x12\n\x04user\x18\x02\
-    \x20\x01(\tR\x04user\x12\x12\n\x04path\x18\x04\x20\x01(\tR\x04path\"-\n\
-    \x05TxnId\x12\x10\n\x03tid\x18\x01\x20\x01(\x04R\x03tid\x12\x12\n\x04par\
-    t\x18\x02\x20\x01(\rR\x04part\"G\n\tGetOidTxn\x12\x10\n\x03tid\x18\x01\
-    \x20\x01(\x04R\x03tid\x12\x10\n\x03oid\x18\x02\x20\x01(\tR\x03oid\x12\
-    \x16\n\x06update\x18\x03\x20\x01(\x08R\x06update\"\x82\x01\n\x05State\
-    \x12\x14\n\x05state\x18\x01\x20\x01(\x0cR\x05state\x12\x0e\n\x02of\x18\
-    \x02\x20\x01(\tR\x02of\x12\x1b\n\tparent_id\x18\x03\x20\x01(\tR\x08paren\
-    tId\x12\x0e\n\x02id\x18\x04\x20\x01(\tR\x02id\x12\x12\n\x04type\x18\x05\
-    \x20\x01(\tR\x04type\x12\x12\n\x04otid\x18\x06\x20\x01(\tR\x04otid2z\n\
-    \x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionR\
-    equest\x1a\n.gos.TxnId\"\0\x12+\n\x0bGetOidState\x12\x0e.gos.GetOidTxn\
-    \x1a\n.gos.State\"\0J\xe4\x08\n\x06\x12\x04\0\0&\x01\n/\n\x01\x0c\x12\
-    \x03\0\0\x12\"%\x20import\x20\"google/protobuf/any.proto\";\n\n\x08\n\
-    \x01\x02\x12\x03\x03\0\x0c\n\n\n\x02\x06\0\x12\x04\x05\0\n\x01\n\n\n\x03\
-    \x06\0\x01\x12\x03\x05\x08\x13\n'\n\x04\x06\0\x02\0\x12\x03\x08\x04D\x1a\
-    \x1a\x20Starts\x20a\x20new\x20transaction\n\n\x0c\n\x05\x06\0\x02\0\x01\
-    \x12\x03\x08\x08\x18\n\x0c\n\x05\x06\0\x02\0\x02\x12\x03\x08\x190\n\x0c\
-    \n\x05\x06\0\x02\0\x03\x12\x03\x08;@\n\x0b\n\x04\x06\0\x02\x01\x12\x03\t\
-    \x041\n\x0c\n\x05\x06\0\x02\x01\x01\x12\x03\t\x08\x13\n\x0c\n\x05\x06\0\
-    \x02\x01\x02\x12\x03\t\x14\x1d\n\x0c\n\x05\x06\0\x02\x01\x03\x12\x03\t(-\
-    \n\n\n\x02\x04\0\x12\x04\r\0\x12\x01\n\n\n\x03\x04\0\x01\x12\x03\r\x08\
-    \x1f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x0e\x04\x13\n\x0c\n\x05\x04\0\x02\0\
-    \x05\x12\x03\x0e\x04\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x0e\t\x0e\n\
-    \x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0e\x11\x12\n\x0b\n\x04\x04\0\x02\x01\
-    \x12\x03\x0f\x04\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x0f\x04\n\n\
-    \x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0f\x0b\x0f\n\x0c\n\x05\x04\0\x02\
-    \x01\x03\x12\x03\x0f\x12\x13\n(\n\x04\x04\0\x02\x02\x12\x03\x11\x04\x14\
-    \x1a\x1brepeated\x20string\x20roles\x20=\x203;\n\n\x0c\n\x05\x04\0\x02\
-    \x02\x05\x12\x03\x11\x04\n\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x11\x0b\
-    \x0f\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x11\x12\x13\n\n\n\x02\x04\x01\
-    \x12\x04\x14\0\x17\x01\n\n\n\x03\x04\x01\x01\x12\x03\x14\x08\r\n\x0b\n\
-    \x04\x04\x01\x02\0\x12\x03\x15\x04\x13\n\x0c\n\x05\x04\x01\x02\0\x05\x12\
-    \x03\x15\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x15\x0b\x0e\n\x0c\n\
-    \x05\x04\x01\x02\0\x03\x12\x03\x15\x11\x12\n\x0b\n\x04\x04\x01\x02\x01\
-    \x12\x03\x16\x04\x14\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x16\x04\n\n\
-    \x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x16\x0b\x0f\n\x0c\n\x05\x04\x01\
-    \x02\x01\x03\x12\x03\x16\x12\x13\n\n\n\x02\x04\x02\x12\x04\x19\0\x1d\x01\
-    \n\n\n\x03\x04\x02\x01\x12\x03\x19\x08\x11\n\x0b\n\x04\x04\x02\x02\0\x12\
-    \x03\x1a\x04\x13\n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03\x1a\x04\n\n\x0c\n\
-    \x05\x04\x02\x02\0\x01\x12\x03\x1a\x0b\x0e\n\x0c\n\x05\x04\x02\x02\0\x03\
-    \x12\x03\x1a\x11\x12\n\x0b\n\x04\x04\x02\x02\x01\x12\x03\x1b\x04\x13\n\
-    \x0c\n\x05\x04\x02\x02\x01\x05\x12\x03\x1b\x04\n\n\x0c\n\x05\x04\x02\x02\
-    \x01\x01\x12\x03\x1b\x0b\x0e\n\x0c\n\x05\x04\x02\x02\x01\x03\x12\x03\x1b\
-    \x11\x12\n\x0b\n\x04\x04\x02\x02\x02\x12\x03\x1c\x04\x14\n\x0c\n\x05\x04\
-    \x02\x02\x02\x05\x12\x03\x1c\x04\x08\n\x0c\n\x05\x04\x02\x02\x02\x01\x12\
-    \x03\x1c\t\x0f\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x03\x1c\x12\x13\n\n\n\
-    \x02\x04\x03\x12\x04\x1f\0&\x01\n\n\n\x03\x04\x03\x01\x12\x03\x1f\x08\r\
-    \n\x0b\n\x04\x04\x03\x02\0\x12\x03\x20\x04\x14\n\x0c\n\x05\x04\x03\x02\0\
-    \x05\x12\x03\x20\x04\t\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03\x20\n\x0f\n\
-    \x0c\n\x05\x04\x03\x02\0\x03\x12\x03\x20\x12\x13\n\x0b\n\x04\x04\x03\x02\
-    \x01\x12\x03!\x04\x12\n\x0c\n\x05\x04\x03\x02\x01\x05\x12\x03!\x04\n\n\
-    \x0c\n\x05\x04\x03\x02\x01\x01\x12\x03!\x0b\r\n\x0c\n\x05\x04\x03\x02\
-    \x01\x03\x12\x03!\x10\x11\n\x0b\n\x04\x04\x03\x02\x02\x12\x03\"\x04\x19\
-    \n\x0c\n\x05\x04\x03\x02\x02\x05\x12\x03\"\x04\n\n\x0c\n\x05\x04\x03\x02\
-    \x02\x01\x12\x03\"\x0b\x14\n\x0c\n\x05\x04\x03\x02\x02\x03\x12\x03\"\x17\
-    \x18\n\x0b\n\x04\x04\x03\x02\x03\x12\x03#\x04\x12\n\x0c\n\x05\x04\x03\
-    \x02\x03\x05\x12\x03#\x04\n\n\x0c\n\x05\x04\x03\x02\x03\x01\x12\x03#\x0b\
-    \r\n\x0c\n\x05\x04\x03\x02\x03\x03\x12\x03#\x10\x11\n\x0b\n\x04\x04\x03\
-    \x02\x04\x12\x03$\x04\x14\n\x0c\n\x05\x04\x03\x02\x04\x05\x12\x03$\x04\n\
-    \n\x0c\n\x05\x04\x03\x02\x04\x01\x12\x03$\x0b\x0f\n\x0c\n\x05\x04\x03\
-    \x02\x04\x03\x12\x03$\x12\x13\n\x0b\n\x04\x04\x03\x02\x05\x12\x03%\x04\
-    \x14\n\x0c\n\x05\x04\x03\x02\x05\x05\x12\x03%\x04\n\n\x0c\n\x05\x04\x03\
-    \x02\x05\x01\x12\x03%\x0b\x0f\n\x0c\n\x05\x04\x03\x02\x05\x03\x12\x03%\
-    \x12\x13b\x06proto3\
+    \n\x11transaction.proto\x12\x03gos\x1a\x1fgoogle/protobuf/timestamp.prot\
+    o\"W\n\x17StartTransactionRequest\x12\x14\n\x05write\x18\x01\x20\x01(\
+    \x08R\x05write\x12\x12\n\x04user\x18\x02\x20\x01(\tR\x04user\x12\x12\n\
+    \x04path\x18\x04\x20\x01(\tR\x04path\"-\n\x05TxnId\x12\x10\n\x03tid\x18\
+    \x01\x20\x01(\x04R\x03tid\x12\x12\n\x04part\x18\x02\x20\x01(\rR\x04part\
+    \"G\n\tGetOidTxn\x12\x10\n\x03tid\x18\x01\x20\x01(\x04R\x03tid\x12\x10\n\
+    \x03oid\x18\x02\x20\x01(\tR\x03oid\x12\x16\n\x06update\x18\x03\x20\x01(\
+    \x08R\x06update\"\x82\x01\n\x05State\x12\x14\n\x05state\x18\x01\x20\x01(\
+    \x0cR\x05state\x12\x0e\n\x02of\x18\x02\x20\x01(\tR\x02of\x12\x1b\n\tpare\
+    nt_id\x18\x03\x20\x01(\tR\x08parentId\x12\x0e\n\x02id\x18\x04\x20\x01(\t\
+    R\x02id\x12\x12\n\x04type\x18\x05\x20\x01(\tR\x04type\x12\x12\n\x04otid\
+    \x18\x06\x20\x01(\tR\x04otid\"\x85\x02\n\nDublinCore\x12\x12\n\x04tags\
+    \x18\x01\x20\x01(\tR\x04tags\x12?\n\rcreation_date\x18\x02\x20\x01(\x0b2\
+    \x1a.google.protobuf.TimestampR\x0ccreationDate\x12A\n\x0eeffective_date\
+    \x18\x03\x20\x01(\x0b2\x1a.google.protobuf.TimestampR\reffectiveDate\x12\
+    C\n\x0fexpiration_date\x18\x04\x20\x01(\x0b2\x1a.google.protobuf.Timesta\
+    mpR\x0eexpirationDate\x12\x1a\n\x08creators\x18\x05\x20\x01(\tR\x08creat\
+    ors2\xab\x01\n\x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.Sta\
+    rtTransactionRequest\x1a\n.gos.TxnId\"\0\x12+\n\x0bGetOidState\x12\x0e.g\
+    os.GetOidTxn\x1a\n.gos.State\"\0\x12/\n\x0eSaveDublinCore\x12\x0f.gos.Du\
+    blinCore\x1a\n.gos.TxnId\"\0J\xd1\x0b\n\x06\x12\x04\0\00\x01\n\x08\n\x01\
+    \x0c\x12\x03\0\0\x12\n0\n\x02\x03\0\x12\x03\x01\0)\"%\x20import\x20\"goo\
+    gle/protobuf/any.proto\";\n\n\x08\n\x01\x02\x12\x03\x04\0\x0c\n\n\n\x02\
+    \x06\0\x12\x04\x06\0\x0c\x01\n\n\n\x03\x06\0\x01\x12\x03\x06\x08\x13\n'\
+    \n\x04\x06\0\x02\0\x12\x03\t\x04D\x1a\x1a\x20Starts\x20a\x20new\x20trans\
+    action\n\n\x0c\n\x05\x06\0\x02\0\x01\x12\x03\t\x08\x18\n\x0c\n\x05\x06\0\
+    \x02\0\x02\x12\x03\t\x190\n\x0c\n\x05\x06\0\x02\0\x03\x12\x03\t;@\n\x0b\
+    \n\x04\x06\0\x02\x01\x12\x03\n\x041\n\x0c\n\x05\x06\0\x02\x01\x01\x12\
+    \x03\n\x08\x13\n\x0c\n\x05\x06\0\x02\x01\x02\x12\x03\n\x14\x1d\n\x0c\n\
+    \x05\x06\0\x02\x01\x03\x12\x03\n(-\n\x0b\n\x04\x06\0\x02\x02\x12\x03\x0b\
+    \x045\n\x0c\n\x05\x06\0\x02\x02\x01\x12\x03\x0b\x08\x16\n\x0c\n\x05\x06\
+    \0\x02\x02\x02\x12\x03\x0b\x17!\n\x0c\n\x05\x06\0\x02\x02\x03\x12\x03\
+    \x0b,1\n\n\n\x02\x04\0\x12\x04\x0f\0\x14\x01\n\n\n\x03\x04\0\x01\x12\x03\
+    \x0f\x08\x1f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x10\x04\x13\n\x0c\n\x05\x04\
+    \0\x02\0\x05\x12\x03\x10\x04\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x10\
+    \t\x0e\n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\x10\x11\x12\n\x0b\n\x04\x04\0\
+    \x02\x01\x12\x03\x11\x04\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x11\
+    \x04\n\n\x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x11\x0b\x0f\n\x0c\n\x05\x04\
+    \0\x02\x01\x03\x12\x03\x11\x12\x13\n(\n\x04\x04\0\x02\x02\x12\x03\x13\
+    \x04\x14\x1a\x1brepeated\x20string\x20roles\x20=\x203;\n\n\x0c\n\x05\x04\
+    \0\x02\x02\x05\x12\x03\x13\x04\n\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\
+    \x13\x0b\x0f\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x13\x12\x13\n\n\n\x02\
+    \x04\x01\x12\x04\x16\0\x19\x01\n\n\n\x03\x04\x01\x01\x12\x03\x16\x08\r\n\
+    \x0b\n\x04\x04\x01\x02\0\x12\x03\x17\x04\x13\n\x0c\n\x05\x04\x01\x02\0\
+    \x05\x12\x03\x17\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x17\x0b\x0e\
+    \n\x0c\n\x05\x04\x01\x02\0\x03\x12\x03\x17\x11\x12\n\x0b\n\x04\x04\x01\
+    \x02\x01\x12\x03\x18\x04\x14\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x18\
+    \x04\n\n\x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x18\x0b\x0f\n\x0c\n\x05\
+    \x04\x01\x02\x01\x03\x12\x03\x18\x12\x13\n\n\n\x02\x04\x02\x12\x04\x1b\0\
+    \x1f\x01\n\n\n\x03\x04\x02\x01\x12\x03\x1b\x08\x11\n\x0b\n\x04\x04\x02\
+    \x02\0\x12\x03\x1c\x04\x13\n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03\x1c\x04\
+    \n\n\x0c\n\x05\x04\x02\x02\0\x01\x12\x03\x1c\x0b\x0e\n\x0c\n\x05\x04\x02\
+    \x02\0\x03\x12\x03\x1c\x11\x12\n\x0b\n\x04\x04\x02\x02\x01\x12\x03\x1d\
+    \x04\x13\n\x0c\n\x05\x04\x02\x02\x01\x05\x12\x03\x1d\x04\n\n\x0c\n\x05\
+    \x04\x02\x02\x01\x01\x12\x03\x1d\x0b\x0e\n\x0c\n\x05\x04\x02\x02\x01\x03\
+    \x12\x03\x1d\x11\x12\n\x0b\n\x04\x04\x02\x02\x02\x12\x03\x1e\x04\x14\n\
+    \x0c\n\x05\x04\x02\x02\x02\x05\x12\x03\x1e\x04\x08\n\x0c\n\x05\x04\x02\
+    \x02\x02\x01\x12\x03\x1e\t\x0f\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x03\
+    \x1e\x12\x13\n\n\n\x02\x04\x03\x12\x04!\0(\x01\n\n\n\x03\x04\x03\x01\x12\
+    \x03!\x08\r\n\x0b\n\x04\x04\x03\x02\0\x12\x03\"\x04\x14\n\x0c\n\x05\x04\
+    \x03\x02\0\x05\x12\x03\"\x04\t\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03\"\n\
+    \x0f\n\x0c\n\x05\x04\x03\x02\0\x03\x12\x03\"\x12\x13\n\x0b\n\x04\x04\x03\
+    \x02\x01\x12\x03#\x04\x12\n\x0c\n\x05\x04\x03\x02\x01\x05\x12\x03#\x04\n\
+    \n\x0c\n\x05\x04\x03\x02\x01\x01\x12\x03#\x0b\r\n\x0c\n\x05\x04\x03\x02\
+    \x01\x03\x12\x03#\x10\x11\n\x0b\n\x04\x04\x03\x02\x02\x12\x03$\x04\x19\n\
+    \x0c\n\x05\x04\x03\x02\x02\x05\x12\x03$\x04\n\n\x0c\n\x05\x04\x03\x02\
+    \x02\x01\x12\x03$\x0b\x14\n\x0c\n\x05\x04\x03\x02\x02\x03\x12\x03$\x17\
+    \x18\n\x0b\n\x04\x04\x03\x02\x03\x12\x03%\x04\x12\n\x0c\n\x05\x04\x03\
+    \x02\x03\x05\x12\x03%\x04\n\n\x0c\n\x05\x04\x03\x02\x03\x01\x12\x03%\x0b\
+    \r\n\x0c\n\x05\x04\x03\x02\x03\x03\x12\x03%\x10\x11\n\x0b\n\x04\x04\x03\
+    \x02\x04\x12\x03&\x04\x14\n\x0c\n\x05\x04\x03\x02\x04\x05\x12\x03&\x04\n\
+    \n\x0c\n\x05\x04\x03\x02\x04\x01\x12\x03&\x0b\x0f\n\x0c\n\x05\x04\x03\
+    \x02\x04\x03\x12\x03&\x12\x13\n\x0b\n\x04\x04\x03\x02\x05\x12\x03'\x04\
+    \x14\n\x0c\n\x05\x04\x03\x02\x05\x05\x12\x03'\x04\n\n\x0c\n\x05\x04\x03\
+    \x02\x05\x01\x12\x03'\x0b\x0f\n\x0c\n\x05\x04\x03\x02\x05\x03\x12\x03'\
+    \x12\x13\n\n\n\x02\x04\x04\x12\x04*\00\x01\n\n\n\x03\x04\x04\x01\x12\x03\
+    *\x08\x12\n\x0b\n\x04\x04\x04\x02\0\x12\x03+\x02\x12\n\x0c\n\x05\x04\x04\
+    \x02\0\x05\x12\x03+\x02\x08\n\x0c\n\x05\x04\x04\x02\0\x01\x12\x03+\t\r\n\
+    \x0c\n\x05\x04\x04\x02\0\x03\x12\x03+\x10\x11\n\x0b\n\x04\x04\x04\x02\
+    \x01\x12\x03,\x02.\n\x0c\n\x05\x04\x04\x02\x01\x06\x12\x03,\x02\x1b\n\
+    \x0c\n\x05\x04\x04\x02\x01\x01\x12\x03,\x1c)\n\x0c\n\x05\x04\x04\x02\x01\
+    \x03\x12\x03,,-\n\x0b\n\x04\x04\x04\x02\x02\x12\x03-\x02/\n\x0c\n\x05\
+    \x04\x04\x02\x02\x06\x12\x03-\x02\x1b\n\x0c\n\x05\x04\x04\x02\x02\x01\
+    \x12\x03-\x1c*\n\x0c\n\x05\x04\x04\x02\x02\x03\x12\x03--.\n\x0b\n\x04\
+    \x04\x04\x02\x03\x12\x03.\x020\n\x0c\n\x05\x04\x04\x02\x03\x06\x12\x03.\
+    \x02\x1b\n\x0c\n\x05\x04\x04\x02\x03\x01\x12\x03.\x1c+\n\x0c\n\x05\x04\
+    \x04\x02\x03\x03\x12\x03../\n\x0b\n\x04\x04\x04\x02\x04\x12\x03/\x02\x16\
+    \n\x0c\n\x05\x04\x04\x02\x04\x05\x12\x03/\x02\x08\n\x0c\n\x05\x04\x04\
+    \x02\x04\x01\x12\x03/\t\x11\n\x0c\n\x05\x04\x04\x02\x04\x03\x12\x03/\x14\
+    \x15b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy::INIT;

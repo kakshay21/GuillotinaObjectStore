@@ -5,5 +5,10 @@
 *__pycache__
 *mypy_cache
 *env
+*dist
+*build
+*guillotina_grpc.egg-info
 *.idea
 *localdb
+*g.db
+*g.db.blobs

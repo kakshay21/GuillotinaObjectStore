@@ -32,6 +32,13 @@ const METHOD_TRANSACTION_GET_OID_STATE: ::grpcio::Method<super::transaction::Get
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_TRANSACTION_SAVE_DUBLIN_CORE: ::grpcio::Method<super::transaction::DublinCore, super::transaction::TxnId> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/gos.Transaction/SaveDublinCore",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 #[derive(Clone)]
 pub struct TransactionClient {
     client: ::grpcio::Client,
@@ -75,6 +82,22 @@ impl TransactionClient {
     pub fn get_oid_state_async(&self, req: &super::transaction::GetOidTxn) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::State>> {
         self.get_oid_state_async_opt(req, ::grpcio::CallOption::default())
     }
+
+    pub fn save_dublin_core_opt(&self, req: &super::transaction::DublinCore, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::transaction::TxnId> {
+        self.client.unary_call(&METHOD_TRANSACTION_SAVE_DUBLIN_CORE, req, opt)
+    }
+
+    pub fn save_dublin_core(&self, req: &super::transaction::DublinCore) -> ::grpcio::Result<super::transaction::TxnId> {
+        self.save_dublin_core_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn save_dublin_core_async_opt(&self, req: &super::transaction::DublinCore, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::TxnId>> {
+        self.client.unary_call_async(&METHOD_TRANSACTION_SAVE_DUBLIN_CORE, req, opt)
+    }
+
+    pub fn save_dublin_core_async(&self, req: &super::transaction::DublinCore) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::TxnId>> {
+        self.save_dublin_core_async_opt(req, ::grpcio::CallOption::default())
+    }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
         self.client.spawn(f)
     }
@@ -83,6 +106,7 @@ impl TransactionClient {
 pub trait Transaction {
     fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<super::transaction::TxnId>);
     fn get_oid_state(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::GetOidTxn, sink: ::grpcio::UnarySink<super::transaction::State>);
+    fn save_dublin_core(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::DublinCore, sink: ::grpcio::UnarySink<super::transaction::TxnId>);
 }
 
 pub fn create_transaction<S: Transaction + Send + Clone + 'static>(s: S) -> ::grpcio::Service {
@@ -91,9 +115,13 @@ pub fn create_transaction<S: Transaction + Send + Clone + 'static>(s: S) -> ::gr
     builder = builder.add_unary_handler(&METHOD_TRANSACTION_START_TRANSACTION, move |ctx, req, resp| {
         instance.start_transaction(ctx, req, resp)
     });
-    let mut instance = s;
+    let mut instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TRANSACTION_GET_OID_STATE, move |ctx, req, resp| {
         instance.get_oid_state(ctx, req, resp)
+    });
+    let mut instance = s;
+    builder = builder.add_unary_handler(&METHOD_TRANSACTION_SAVE_DUBLIN_CORE, move |ctx, req, resp| {
+        instance.save_dublin_core(ctx, req, resp)
     });
     builder.build()
 }

@@ -11,6 +11,7 @@ from google.protobuf import symbol_database as _symbol_database
 _sym_db = _symbol_database.Default()
 
 
+from google.protobuf import timestamp_pb2 as google_dot_protobuf_dot_timestamp__pb2
 
 
 DESCRIPTOR = _descriptor.FileDescriptor(
@@ -18,8 +19,9 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='gos',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x11transaction.proto\x12\x03gos\"D\n\x17StartTransactionRequest\x12\r\n\x05write\x18\x01 \x01(\x08\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\"\n\x05TxnId\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0c\n\x04part\x18\x02 \x01(\r\"5\n\tGetOidTxn\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0b\n\x03oid\x18\x02 \x01(\t\x12\x0e\n\x06update\x18\x03 \x01(\x08\"]\n\x05State\x12\r\n\x05state\x18\x01 \x01(\x0c\x12\n\n\x02of\x18\x02 \x01(\t\x12\x11\n\tparent_id\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\t\x12\x0c\n\x04otid\x18\x06 \x01(\t2z\n\x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionRequest\x1a\n.gos.TxnId\"\x00\x12+\n\x0bGetOidState\x12\x0e.gos.GetOidTxn\x1a\n.gos.State\"\x00\x62\x06proto3'
-)
+  serialized_pb=b'\n\x11transaction.proto\x12\x03gos\x1a\x1fgoogle/protobuf/timestamp.proto\"D\n\x17StartTransactionRequest\x12\r\n\x05write\x18\x01 \x01(\x08\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\"\n\x05TxnId\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0c\n\x04part\x18\x02 \x01(\r\"5\n\tGetOidTxn\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0b\n\x03oid\x18\x02 \x01(\t\x12\x0e\n\x06update\x18\x03 \x01(\x08\"]\n\x05State\x12\r\n\x05state\x18\x01 \x01(\x0c\x12\n\n\x02of\x18\x02 \x01(\t\x12\x11\n\tparent_id\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\t\x12\x0c\n\x04otid\x18\x06 \x01(\t\"\xc8\x01\n\nDublinCore\x12\x0c\n\x04tags\x18\x01 \x01(\t\x12\x31\n\rcreation_date\x18\x02 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x32\n\x0e\x65\x66\x66\x65\x63tive_date\x18\x03 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x33\n\x0f\x65xpiration_date\x18\x04 \x01(\x0b\x32\x1a.google.protobuf.Timestamp\x12\x10\n\x08\x63reators\x18\x05 \x01(\t2\xab\x01\n\x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionRequest\x1a\n.gos.TxnId\"\x00\x12+\n\x0bGetOidState\x12\x0e.gos.GetOidTxn\x1a\n.gos.State\"\x00\x12/\n\x0eSaveDublinCore\x12\x0f.gos.DublinCore\x1a\n.gos.TxnId\"\x00\x62\x06proto3'
+  ,
+  dependencies=[google_dot_protobuf_dot_timestamp__pb2.DESCRIPTOR,])
 
 
 
@@ -64,8 +66,8 @@ _STARTTRANSACTIONREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=26,
-  serialized_end=94,
+  serialized_start=59,
+  serialized_end=127,
 )
 
 
@@ -102,8 +104,8 @@ _TXNID = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=96,
-  serialized_end=130,
+  serialized_start=129,
+  serialized_end=163,
 )
 
 
@@ -147,8 +149,8 @@ _GETOIDTXN = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=132,
-  serialized_end=185,
+  serialized_start=165,
+  serialized_end=218,
 )
 
 
@@ -213,14 +215,77 @@ _STATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=187,
-  serialized_end=280,
+  serialized_start=220,
+  serialized_end=313,
 )
 
+
+_DUBLINCORE = _descriptor.Descriptor(
+  name='DublinCore',
+  full_name='gos.DublinCore',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='tags', full_name='gos.DublinCore.tags', index=0,
+      number=1, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='creation_date', full_name='gos.DublinCore.creation_date', index=1,
+      number=2, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='effective_date', full_name='gos.DublinCore.effective_date', index=2,
+      number=3, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='expiration_date', full_name='gos.DublinCore.expiration_date', index=3,
+      number=4, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='creators', full_name='gos.DublinCore.creators', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=316,
+  serialized_end=516,
+)
+
+_DUBLINCORE.fields_by_name['creation_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_DUBLINCORE.fields_by_name['effective_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
+_DUBLINCORE.fields_by_name['expiration_date'].message_type = google_dot_protobuf_dot_timestamp__pb2._TIMESTAMP
 DESCRIPTOR.message_types_by_name['StartTransactionRequest'] = _STARTTRANSACTIONREQUEST
 DESCRIPTOR.message_types_by_name['TxnId'] = _TXNID
 DESCRIPTOR.message_types_by_name['GetOidTxn'] = _GETOIDTXN
 DESCRIPTOR.message_types_by_name['State'] = _STATE
+DESCRIPTOR.message_types_by_name['DublinCore'] = _DUBLINCORE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 StartTransactionRequest = _reflection.GeneratedProtocolMessageType('StartTransactionRequest', (_message.Message,), {
@@ -251,6 +316,13 @@ State = _reflection.GeneratedProtocolMessageType('State', (_message.Message,), {
   })
 _sym_db.RegisterMessage(State)
 
+DublinCore = _reflection.GeneratedProtocolMessageType('DublinCore', (_message.Message,), {
+  'DESCRIPTOR' : _DUBLINCORE,
+  '__module__' : 'transaction_pb2'
+  # @@protoc_insertion_point(class_scope:gos.DublinCore)
+  })
+_sym_db.RegisterMessage(DublinCore)
+
 
 
 _TRANSACTION = _descriptor.ServiceDescriptor(
@@ -259,8 +331,8 @@ _TRANSACTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=282,
-  serialized_end=404,
+  serialized_start=519,
+  serialized_end=690,
   methods=[
   _descriptor.MethodDescriptor(
     name='StartTransaction',
@@ -278,6 +350,15 @@ _TRANSACTION = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETOIDTXN,
     output_type=_STATE,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='SaveDublinCore',
+    full_name='gos.Transaction.SaveDublinCore',
+    index=2,
+    containing_service=None,
+    input_type=_DUBLINCORE,
+    output_type=_TXNID,
     serialized_options=None,
   ),
 ])

@@ -42,7 +42,11 @@ fn db_get_value(db: &DB, key: &str) -> String {
 }
 
 impl Transaction for TransactionService {
-    fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<transaction::TxnId>) {
+    fn start_transaction(
+        &mut self, ctx: ::grpcio::RpcContext,
+        req: transaction::StartTransactionRequest,
+        sink: ::grpcio::UnarySink<transaction::TxnId>
+    ) {
         let write = req.get_user();
         let db: DB = intialize_db("localdb");
         db_write(&db, write, "1234");
@@ -64,11 +68,6 @@ impl Transaction for TransactionService {
         req: transaction::GetOidTxn,
         sink: ::grpcio::UnarySink<transaction::State>,
     ) {
-        // let oid = req.get_oid();
-        // let db: DB = intialize_db("localdb");
-        // db_write(&db, oid, "1234");
-        // let value = db_get_value(&db, oid);
-        // let tid: u64 = value.parse().unwrap();
         let mut oid_state = transaction::State::default();
         oid_state.set_state(vec![2, 3]);
         oid_state.set_of("rupesh".to_string());
@@ -78,6 +77,27 @@ impl Transaction for TransactionService {
         oid_state.set_otid("rupesh".to_string());
         let f = sink
             .success(oid_state)
+            .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
+        ctx.spawn(f)
+    }
+
+    fn save_dublin_core(
+        &mut self, ctx: ::grpcio::RpcContext,
+        req: transaction::DublinCore,
+        sink: ::grpcio::UnarySink<transaction::TxnId>
+    ) {
+        let tags = req.get_tags();
+        let creators = req.get_creators();
+        let db: DB = intialize_db("localdb");
+        db_write(&db, "tags", tags);
+        db_write(&db, "creators", creators);
+        let value = db_get_value(&db, "tags");
+        let tid: u64 = value.parse().unwrap();
+        let mut txn = transaction::TxnId::default();
+        txn.set_tid(tid);
+        txn.set_part(456);
+        let f = sink
+            .success(txn)
             .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
         ctx.spawn(f)
     }

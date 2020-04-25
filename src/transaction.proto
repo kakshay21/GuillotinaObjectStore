@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/timestamp.proto";
 // import "google/protobuf/any.proto";
 
 package gos;
@@ -8,6 +9,7 @@ service Transaction {
     // Starts a new transaction
     rpc StartTransaction(StartTransactionRequest) returns (TxnId) {}
     rpc GetOidState(GetOidTxn) returns (State) {}
+    rpc SaveDublinCore(DublinCore) returns (TxnId) {}
 }
 
 
@@ -36,4 +38,12 @@ message State {
     string id = 4;
     string type = 5;
     string otid = 6;
+}
+
+message DublinCore {
+  string tags = 1;
+  google.protobuf.Timestamp creation_date = 2;
+  google.protobuf.Timestamp effective_date = 3;
+  google.protobuf.Timestamp expiration_date = 4;
+  string creators = 5;
 }
