@@ -19,6 +19,11 @@ class TransactionStub(object):
         request_serializer=transaction__pb2.StartTransactionRequest.SerializeToString,
         response_deserializer=transaction__pb2.TxnId.FromString,
         )
+    self.GetOidState = channel.unary_unary(
+        '/gos.Transaction/GetOidState',
+        request_serializer=transaction__pb2.GetOidTxn.SerializeToString,
+        response_deserializer=transaction__pb2.State.FromString,
+        )
 
 
 class TransactionServicer(object):
@@ -32,6 +37,13 @@ class TransactionServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetOidState(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_TransactionServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -39,6 +51,11 @@ def add_TransactionServicer_to_server(servicer, server):
           servicer.StartTransaction,
           request_deserializer=transaction__pb2.StartTransactionRequest.FromString,
           response_serializer=transaction__pb2.TxnId.SerializeToString,
+      ),
+      'GetOidState': grpc.unary_unary_rpc_method_handler(
+          servicer.GetOidState,
+          request_deserializer=transaction__pb2.GetOidTxn.FromString,
+          response_serializer=transaction__pb2.State.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

@@ -25,6 +25,12 @@ def run():
             transaction_pb2.StartTransactionRequest(write=True, user='akshay', path='/home'),
             timeout=10
         )
+
+        response2 = stub.GetOidState(
+            transaction_pb2.GetOidTxn(tid=10, oid='akshay', update=True),
+            timeout=10
+        )
+    print(response2)
     print(response)
 
 

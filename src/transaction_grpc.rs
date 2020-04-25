@@ -25,6 +25,13 @@ const METHOD_TRANSACTION_START_TRANSACTION: ::grpcio::Method<super::transaction:
     resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
 };
 
+const METHOD_TRANSACTION_GET_OID_STATE: ::grpcio::Method<super::transaction::GetOidTxn, super::transaction::State> = ::grpcio::Method {
+    ty: ::grpcio::MethodType::Unary,
+    name: "/gos.Transaction/GetOidState",
+    req_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+    resp_mar: ::grpcio::Marshaller { ser: ::grpcio::pb_ser, de: ::grpcio::pb_de },
+};
+
 #[derive(Clone)]
 pub struct TransactionClient {
     client: ::grpcio::Client,
@@ -52,6 +59,22 @@ impl TransactionClient {
     pub fn start_transaction_async(&self, req: &super::transaction::StartTransactionRequest) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::TxnId>> {
         self.start_transaction_async_opt(req, ::grpcio::CallOption::default())
     }
+
+    pub fn get_oid_state_opt(&self, req: &super::transaction::GetOidTxn, opt: ::grpcio::CallOption) -> ::grpcio::Result<super::transaction::State> {
+        self.client.unary_call(&METHOD_TRANSACTION_GET_OID_STATE, req, opt)
+    }
+
+    pub fn get_oid_state(&self, req: &super::transaction::GetOidTxn) -> ::grpcio::Result<super::transaction::State> {
+        self.get_oid_state_opt(req, ::grpcio::CallOption::default())
+    }
+
+    pub fn get_oid_state_async_opt(&self, req: &super::transaction::GetOidTxn, opt: ::grpcio::CallOption) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::State>> {
+        self.client.unary_call_async(&METHOD_TRANSACTION_GET_OID_STATE, req, opt)
+    }
+
+    pub fn get_oid_state_async(&self, req: &super::transaction::GetOidTxn) -> ::grpcio::Result<::grpcio::ClientUnaryReceiver<super::transaction::State>> {
+        self.get_oid_state_async_opt(req, ::grpcio::CallOption::default())
+    }
     pub fn spawn<F>(&self, f: F) where F: ::futures::Future<Item = (), Error = ()> + Send + 'static {
         self.client.spawn(f)
     }
@@ -59,13 +82,18 @@ impl TransactionClient {
 
 pub trait Transaction {
     fn start_transaction(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::StartTransactionRequest, sink: ::grpcio::UnarySink<super::transaction::TxnId>);
+    fn get_oid_state(&mut self, ctx: ::grpcio::RpcContext, req: super::transaction::GetOidTxn, sink: ::grpcio::UnarySink<super::transaction::State>);
 }
 
 pub fn create_transaction<S: Transaction + Send + Clone + 'static>(s: S) -> ::grpcio::Service {
     let mut builder = ::grpcio::ServiceBuilder::new();
-    let mut instance = s;
+    let mut instance = s.clone();
     builder = builder.add_unary_handler(&METHOD_TRANSACTION_START_TRANSACTION, move |ctx, req, resp| {
         instance.start_transaction(ctx, req, resp)
+    });
+    let mut instance = s;
+    builder = builder.add_unary_handler(&METHOD_TRANSACTION_GET_OID_STATE, move |ctx, req, resp| {
+        instance.get_oid_state(ctx, req, resp)
     });
     builder.build()
 }

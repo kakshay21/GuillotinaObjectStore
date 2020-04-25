@@ -18,7 +18,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='gos',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=b'\n\x11transaction.proto\x12\x03gos\"D\n\x17StartTransactionRequest\x12\r\n\x05write\x18\x01 \x01(\x08\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\"\n\x05TxnId\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0c\n\x04part\x18\x02 \x01(\r2M\n\x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionRequest\x1a\n.gos.TxnId\"\x00\x62\x06proto3'
+  serialized_pb=b'\n\x11transaction.proto\x12\x03gos\"D\n\x17StartTransactionRequest\x12\r\n\x05write\x18\x01 \x01(\x08\x12\x0c\n\x04user\x18\x02 \x01(\t\x12\x0c\n\x04path\x18\x04 \x01(\t\"\"\n\x05TxnId\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0c\n\x04part\x18\x02 \x01(\r\"5\n\tGetOidTxn\x12\x0b\n\x03tid\x18\x01 \x01(\x04\x12\x0b\n\x03oid\x18\x02 \x01(\t\x12\x0e\n\x06update\x18\x03 \x01(\x08\"]\n\x05State\x12\r\n\x05state\x18\x01 \x01(\x0c\x12\n\n\x02of\x18\x02 \x01(\t\x12\x11\n\tparent_id\x18\x03 \x01(\t\x12\n\n\x02id\x18\x04 \x01(\t\x12\x0c\n\x04type\x18\x05 \x01(\t\x12\x0c\n\x04otid\x18\x06 \x01(\t2z\n\x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionRequest\x1a\n.gos.TxnId\"\x00\x12+\n\x0bGetOidState\x12\x0e.gos.GetOidTxn\x1a\n.gos.State\"\x00\x62\x06proto3'
 )
 
 
@@ -106,8 +106,121 @@ _TXNID = _descriptor.Descriptor(
   serialized_end=130,
 )
 
+
+_GETOIDTXN = _descriptor.Descriptor(
+  name='GetOidTxn',
+  full_name='gos.GetOidTxn',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='tid', full_name='gos.GetOidTxn.tid', index=0,
+      number=1, type=4, cpp_type=4, label=1,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='oid', full_name='gos.GetOidTxn.oid', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='update', full_name='gos.GetOidTxn.update', index=2,
+      number=3, type=8, cpp_type=7, label=1,
+      has_default_value=False, default_value=False,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=132,
+  serialized_end=185,
+)
+
+
+_STATE = _descriptor.Descriptor(
+  name='State',
+  full_name='gos.State',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='state', full_name='gos.State.state', index=0,
+      number=1, type=12, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"",
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='of', full_name='gos.State.of', index=1,
+      number=2, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='parent_id', full_name='gos.State.parent_id', index=2,
+      number=3, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='id', full_name='gos.State.id', index=3,
+      number=4, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='type', full_name='gos.State.type', index=4,
+      number=5, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+    _descriptor.FieldDescriptor(
+      name='otid', full_name='gos.State.otid', index=5,
+      number=6, type=9, cpp_type=9, label=1,
+      has_default_value=False, default_value=b"".decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=187,
+  serialized_end=280,
+)
+
 DESCRIPTOR.message_types_by_name['StartTransactionRequest'] = _STARTTRANSACTIONREQUEST
 DESCRIPTOR.message_types_by_name['TxnId'] = _TXNID
+DESCRIPTOR.message_types_by_name['GetOidTxn'] = _GETOIDTXN
+DESCRIPTOR.message_types_by_name['State'] = _STATE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
 StartTransactionRequest = _reflection.GeneratedProtocolMessageType('StartTransactionRequest', (_message.Message,), {
@@ -124,6 +237,20 @@ TxnId = _reflection.GeneratedProtocolMessageType('TxnId', (_message.Message,), {
   })
 _sym_db.RegisterMessage(TxnId)
 
+GetOidTxn = _reflection.GeneratedProtocolMessageType('GetOidTxn', (_message.Message,), {
+  'DESCRIPTOR' : _GETOIDTXN,
+  '__module__' : 'transaction_pb2'
+  # @@protoc_insertion_point(class_scope:gos.GetOidTxn)
+  })
+_sym_db.RegisterMessage(GetOidTxn)
+
+State = _reflection.GeneratedProtocolMessageType('State', (_message.Message,), {
+  'DESCRIPTOR' : _STATE,
+  '__module__' : 'transaction_pb2'
+  # @@protoc_insertion_point(class_scope:gos.State)
+  })
+_sym_db.RegisterMessage(State)
+
 
 
 _TRANSACTION = _descriptor.ServiceDescriptor(
@@ -132,8 +259,8 @@ _TRANSACTION = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=132,
-  serialized_end=209,
+  serialized_start=282,
+  serialized_end=404,
   methods=[
   _descriptor.MethodDescriptor(
     name='StartTransaction',
@@ -142,6 +269,15 @@ _TRANSACTION = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_STARTTRANSACTIONREQUEST,
     output_type=_TXNID,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetOidState',
+    full_name='gos.Transaction.GetOidState',
+    index=1,
+    containing_service=None,
+    input_type=_GETOIDTXN,
+    output_type=_STATE,
     serialized_options=None,
   ),
 ])

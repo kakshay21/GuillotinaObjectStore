@@ -57,6 +57,30 @@ impl Transaction for TransactionService {
             .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
         ctx.spawn(f)
     }
+
+    fn get_oid_state(
+        &mut self,
+        ctx: ::grpcio::RpcContext,
+        req: transaction::GetOidTxn,
+        sink: ::grpcio::UnarySink<transaction::State>,
+    ) {
+        // let oid = req.get_oid();
+        // let db: DB = intialize_db("localdb");
+        // db_write(&db, oid, "1234");
+        // let value = db_get_value(&db, oid);
+        // let tid: u64 = value.parse().unwrap();
+        let mut oid_state = transaction::State::default();
+        oid_state.set_state(vec![2, 3]);
+        oid_state.set_of("rupesh".to_string());
+        oid_state.set_parent_id("rupesh".to_string());
+        oid_state.set_id("rupesh".to_string());
+        oid_state.set_field_type("rupesh".to_string());
+        oid_state.set_otid("rupesh".to_string());
+        let f = sink
+            .success(oid_state)
+            .map_err(move |e| error!("failed to reply {:?}: {:?}", req, e));
+        ctx.spawn(f)
+    }
 }
 
 fn main() {

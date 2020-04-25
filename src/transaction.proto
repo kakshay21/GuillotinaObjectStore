@@ -7,6 +7,7 @@ service Transaction {
 
     // Starts a new transaction
     rpc StartTransaction(StartTransactionRequest) returns (TxnId) {}
+    rpc GetOidState(GetOidTxn) returns (State) {}
 }
 
 
@@ -20,4 +21,19 @@ message StartTransactionRequest {
 message TxnId {
     uint64 tid = 1;
     uint32 part = 2;
+}
+
+message GetOidTxn {
+    uint64 tid = 1;
+    string oid = 2;
+    bool update = 3;
+}
+
+message State {
+    bytes state = 1;
+    string of = 2;
+    string parent_id = 3;
+    string id = 4;
+    string type = 5;
+    string otid = 6;
 }

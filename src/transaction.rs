@@ -469,36 +469,691 @@ impl ::protobuf::reflect::ProtobufValue for TxnId {
     }
 }
 
+#[derive(PartialEq,Clone,Default)]
+pub struct GetOidTxn {
+    // message fields
+    pub tid: u64,
+    pub oid: ::std::string::String,
+    pub update: bool,
+    // special fields
+    pub unknown_fields: ::protobuf::UnknownFields,
+    pub cached_size: ::protobuf::CachedSize,
+}
+
+impl<'a> ::std::default::Default for &'a GetOidTxn {
+    fn default() -> &'a GetOidTxn {
+        <GetOidTxn as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl GetOidTxn {
+    pub fn new() -> GetOidTxn {
+        ::std::default::Default::default()
+    }
+
+    // uint64 tid = 1;
+
+
+    pub fn get_tid(&self) -> u64 {
+        self.tid
+    }
+    pub fn clear_tid(&mut self) {
+        self.tid = 0;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_tid(&mut self, v: u64) {
+        self.tid = v;
+    }
+
+    // string oid = 2;
+
+
+    pub fn get_oid(&self) -> &str {
+        &self.oid
+    }
+    pub fn clear_oid(&mut self) {
+        self.oid.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_oid(&mut self, v: ::std::string::String) {
+        self.oid = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_oid(&mut self) -> &mut ::std::string::String {
+        &mut self.oid
+    }
+
+    // Take field
+    pub fn take_oid(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.oid, ::std::string::String::new())
+    }
+
+    // bool update = 3;
+
+
+    pub fn get_update(&self) -> bool {
+        self.update
+    }
+    pub fn clear_update(&mut self) {
+        self.update = false;
+    }
+
+    // Param is passed by value, moved
+    pub fn set_update(&mut self, v: bool) {
+        self.update = v;
+    }
+}
+
+impl ::protobuf::Message for GetOidTxn {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_uint64()?;
+                    self.tid = tmp;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.oid)?;
+                },
+                3 => {
+                    if wire_type != ::protobuf::wire_format::WireTypeVarint {
+                        return ::std::result::Result::Err(::protobuf::rt::unexpected_wire_type(wire_type));
+                    }
+                    let tmp = is.read_bool()?;
+                    self.update = tmp;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if self.tid != 0 {
+            my_size += ::protobuf::rt::value_size(1, self.tid, ::protobuf::wire_format::WireTypeVarint);
+        }
+        if !self.oid.is_empty() {
+            my_size += ::protobuf::rt::string_size(2, &self.oid);
+        }
+        if self.update != false {
+            my_size += 2;
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        if self.tid != 0 {
+            os.write_uint64(1, self.tid)?;
+        }
+        if !self.oid.is_empty() {
+            os.write_string(2, &self.oid)?;
+        }
+        if self.update != false {
+            os.write_bool(3, self.update)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
+    }
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> GetOidTxn {
+        GetOidTxn::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeUint64>(
+                    "tid",
+                    |m: &GetOidTxn| { &m.tid },
+                    |m: &mut GetOidTxn| { &mut m.tid },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "oid",
+                    |m: &GetOidTxn| { &m.oid },
+                    |m: &mut GetOidTxn| { &mut m.oid },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBool>(
+                    "update",
+                    |m: &GetOidTxn| { &m.update },
+                    |m: &mut GetOidTxn| { &mut m.update },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<GetOidTxn>(
+                    "GetOidTxn",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static GetOidTxn {
+        static mut instance: ::protobuf::lazy::Lazy<GetOidTxn> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const GetOidTxn,
+        };
+        unsafe {
+            instance.get(GetOidTxn::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for GetOidTxn {
+    fn clear(&mut self) {
+        self.tid = 0;
+        self.oid.clear();
+        self.update = false;
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for GetOidTxn {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for GetOidTxn {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
+#[derive(PartialEq,Clone,Default)]
+pub struct State {
+    // message fields
+    pub state: ::std::vec::Vec<u8>,
+    pub of: ::std::string::String,
+    pub parent_id: ::std::string::String,
+    pub id: ::std::string::String,
+    pub field_type: ::std::string::String,
+    pub otid: ::std::string::String,
+    // special fields
+    pub unknown_fields: ::protobuf::UnknownFields,
+    pub cached_size: ::protobuf::CachedSize,
+}
+
+impl<'a> ::std::default::Default for &'a State {
+    fn default() -> &'a State {
+        <State as ::protobuf::Message>::default_instance()
+    }
+}
+
+impl State {
+    pub fn new() -> State {
+        ::std::default::Default::default()
+    }
+
+    // bytes state = 1;
+
+
+    pub fn get_state(&self) -> &[u8] {
+        &self.state
+    }
+    pub fn clear_state(&mut self) {
+        self.state.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_state(&mut self, v: ::std::vec::Vec<u8>) {
+        self.state = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_state(&mut self) -> &mut ::std::vec::Vec<u8> {
+        &mut self.state
+    }
+
+    // Take field
+    pub fn take_state(&mut self) -> ::std::vec::Vec<u8> {
+        ::std::mem::replace(&mut self.state, ::std::vec::Vec::new())
+    }
+
+    // string of = 2;
+
+
+    pub fn get_of(&self) -> &str {
+        &self.of
+    }
+    pub fn clear_of(&mut self) {
+        self.of.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_of(&mut self, v: ::std::string::String) {
+        self.of = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_of(&mut self) -> &mut ::std::string::String {
+        &mut self.of
+    }
+
+    // Take field
+    pub fn take_of(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.of, ::std::string::String::new())
+    }
+
+    // string parent_id = 3;
+
+
+    pub fn get_parent_id(&self) -> &str {
+        &self.parent_id
+    }
+    pub fn clear_parent_id(&mut self) {
+        self.parent_id.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_parent_id(&mut self, v: ::std::string::String) {
+        self.parent_id = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_parent_id(&mut self) -> &mut ::std::string::String {
+        &mut self.parent_id
+    }
+
+    // Take field
+    pub fn take_parent_id(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.parent_id, ::std::string::String::new())
+    }
+
+    // string id = 4;
+
+
+    pub fn get_id(&self) -> &str {
+        &self.id
+    }
+    pub fn clear_id(&mut self) {
+        self.id.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_id(&mut self, v: ::std::string::String) {
+        self.id = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_id(&mut self) -> &mut ::std::string::String {
+        &mut self.id
+    }
+
+    // Take field
+    pub fn take_id(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.id, ::std::string::String::new())
+    }
+
+    // string type = 5;
+
+
+    pub fn get_field_type(&self) -> &str {
+        &self.field_type
+    }
+    pub fn clear_field_type(&mut self) {
+        self.field_type.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_field_type(&mut self, v: ::std::string::String) {
+        self.field_type = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_field_type(&mut self) -> &mut ::std::string::String {
+        &mut self.field_type
+    }
+
+    // Take field
+    pub fn take_field_type(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.field_type, ::std::string::String::new())
+    }
+
+    // string otid = 6;
+
+
+    pub fn get_otid(&self) -> &str {
+        &self.otid
+    }
+    pub fn clear_otid(&mut self) {
+        self.otid.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_otid(&mut self, v: ::std::string::String) {
+        self.otid = v;
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_otid(&mut self) -> &mut ::std::string::String {
+        &mut self.otid
+    }
+
+    // Take field
+    pub fn take_otid(&mut self) -> ::std::string::String {
+        ::std::mem::replace(&mut self.otid, ::std::string::String::new())
+    }
+}
+
+impl ::protobuf::Message for State {
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut ::protobuf::CodedInputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        while !is.eof()? {
+            let (field_number, wire_type) = is.read_tag_unpack()?;
+            match field_number {
+                1 => {
+                    ::protobuf::rt::read_singular_proto3_bytes_into(wire_type, is, &mut self.state)?;
+                },
+                2 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.of)?;
+                },
+                3 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.parent_id)?;
+                },
+                4 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.id)?;
+                },
+                5 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.field_type)?;
+                },
+                6 => {
+                    ::protobuf::rt::read_singular_proto3_string_into(wire_type, is, &mut self.otid)?;
+                },
+                _ => {
+                    ::protobuf::rt::read_unknown_or_skip_group(field_number, wire_type, is, self.mut_unknown_fields())?;
+                },
+            };
+        }
+        ::std::result::Result::Ok(())
+    }
+
+    // Compute sizes of nested messages
+    #[allow(unused_variables)]
+    fn compute_size(&self) -> u32 {
+        let mut my_size = 0;
+        if !self.state.is_empty() {
+            my_size += ::protobuf::rt::bytes_size(1, &self.state);
+        }
+        if !self.of.is_empty() {
+            my_size += ::protobuf::rt::string_size(2, &self.of);
+        }
+        if !self.parent_id.is_empty() {
+            my_size += ::protobuf::rt::string_size(3, &self.parent_id);
+        }
+        if !self.id.is_empty() {
+            my_size += ::protobuf::rt::string_size(4, &self.id);
+        }
+        if !self.field_type.is_empty() {
+            my_size += ::protobuf::rt::string_size(5, &self.field_type);
+        }
+        if !self.otid.is_empty() {
+            my_size += ::protobuf::rt::string_size(6, &self.otid);
+        }
+        my_size += ::protobuf::rt::unknown_fields_size(self.get_unknown_fields());
+        self.cached_size.set(my_size);
+        my_size
+    }
+
+    fn write_to_with_cached_sizes(&self, os: &mut ::protobuf::CodedOutputStream<'_>) -> ::protobuf::ProtobufResult<()> {
+        if !self.state.is_empty() {
+            os.write_bytes(1, &self.state)?;
+        }
+        if !self.of.is_empty() {
+            os.write_string(2, &self.of)?;
+        }
+        if !self.parent_id.is_empty() {
+            os.write_string(3, &self.parent_id)?;
+        }
+        if !self.id.is_empty() {
+            os.write_string(4, &self.id)?;
+        }
+        if !self.field_type.is_empty() {
+            os.write_string(5, &self.field_type)?;
+        }
+        if !self.otid.is_empty() {
+            os.write_string(6, &self.otid)?;
+        }
+        os.write_unknown_fields(self.get_unknown_fields())?;
+        ::std::result::Result::Ok(())
+    }
+
+    fn get_cached_size(&self) -> u32 {
+        self.cached_size.get()
+    }
+
+    fn get_unknown_fields(&self) -> &::protobuf::UnknownFields {
+        &self.unknown_fields
+    }
+
+    fn mut_unknown_fields(&mut self) -> &mut ::protobuf::UnknownFields {
+        &mut self.unknown_fields
+    }
+
+    fn as_any(&self) -> &dyn (::std::any::Any) {
+        self as &dyn (::std::any::Any)
+    }
+    fn as_any_mut(&mut self) -> &mut dyn (::std::any::Any) {
+        self as &mut dyn (::std::any::Any)
+    }
+    fn into_any(self: Box<Self>) -> ::std::boxed::Box<dyn (::std::any::Any)> {
+        self
+    }
+
+    fn descriptor(&self) -> &'static ::protobuf::reflect::MessageDescriptor {
+        Self::descriptor_static()
+    }
+
+    fn new() -> State {
+        State::new()
+    }
+
+    fn descriptor_static() -> &'static ::protobuf::reflect::MessageDescriptor {
+        static mut descriptor: ::protobuf::lazy::Lazy<::protobuf::reflect::MessageDescriptor> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const ::protobuf::reflect::MessageDescriptor,
+        };
+        unsafe {
+            descriptor.get(|| {
+                let mut fields = ::std::vec::Vec::new();
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeBytes>(
+                    "state",
+                    |m: &State| { &m.state },
+                    |m: &mut State| { &mut m.state },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "of",
+                    |m: &State| { &m.of },
+                    |m: &mut State| { &mut m.of },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "parent_id",
+                    |m: &State| { &m.parent_id },
+                    |m: &mut State| { &mut m.parent_id },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "id",
+                    |m: &State| { &m.id },
+                    |m: &mut State| { &mut m.id },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "type",
+                    |m: &State| { &m.field_type },
+                    |m: &mut State| { &mut m.field_type },
+                ));
+                fields.push(::protobuf::reflect::accessor::make_simple_field_accessor::<_, ::protobuf::types::ProtobufTypeString>(
+                    "otid",
+                    |m: &State| { &m.otid },
+                    |m: &mut State| { &mut m.otid },
+                ));
+                ::protobuf::reflect::MessageDescriptor::new::<State>(
+                    "State",
+                    fields,
+                    file_descriptor_proto()
+                )
+            })
+        }
+    }
+
+    fn default_instance() -> &'static State {
+        static mut instance: ::protobuf::lazy::Lazy<State> = ::protobuf::lazy::Lazy {
+            lock: ::protobuf::lazy::ONCE_INIT,
+            ptr: 0 as *const State,
+        };
+        unsafe {
+            instance.get(State::new)
+        }
+    }
+}
+
+impl ::protobuf::Clear for State {
+    fn clear(&mut self) {
+        self.state.clear();
+        self.of.clear();
+        self.parent_id.clear();
+        self.id.clear();
+        self.field_type.clear();
+        self.otid.clear();
+        self.unknown_fields.clear();
+    }
+}
+
+impl ::std::fmt::Debug for State {
+    fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+        ::protobuf::text_format::fmt(self, f)
+    }
+}
+
+impl ::protobuf::reflect::ProtobufValue for State {
+    fn as_ref(&self) -> ::protobuf::reflect::ProtobufValueRef {
+        ::protobuf::reflect::ProtobufValueRef::Message(self)
+    }
+}
+
 static file_descriptor_proto_data: &'static [u8] = b"\
     \n\x11transaction.proto\x12\x03gos\"W\n\x17StartTransactionRequest\x12\
     \x14\n\x05write\x18\x01\x20\x01(\x08R\x05write\x12\x12\n\x04user\x18\x02\
     \x20\x01(\tR\x04user\x12\x12\n\x04path\x18\x04\x20\x01(\tR\x04path\"-\n\
     \x05TxnId\x12\x10\n\x03tid\x18\x01\x20\x01(\x04R\x03tid\x12\x12\n\x04par\
-    t\x18\x02\x20\x01(\rR\x04part2M\n\x0bTransaction\x12>\n\x10StartTransact\
-    ion\x12\x1c.gos.StartTransactionRequest\x1a\n.gos.TxnId\"\0J\x8e\x04\n\
-    \x06\x12\x04\0\0\x16\x01\n/\n\x01\x0c\x12\x03\0\0\x12\"%\x20import\x20\"\
-    google/protobuf/any.proto\";\n\n\x08\n\x01\x02\x12\x03\x03\0\x0c\n\n\n\
-    \x02\x06\0\x12\x04\x05\0\t\x01\n\n\n\x03\x06\0\x01\x12\x03\x05\x08\x13\n\
-    '\n\x04\x06\0\x02\0\x12\x03\x08\x04D\x1a\x1a\x20Starts\x20a\x20new\x20tr\
-    ansaction\n\n\x0c\n\x05\x06\0\x02\0\x01\x12\x03\x08\x08\x18\n\x0c\n\x05\
-    \x06\0\x02\0\x02\x12\x03\x08\x190\n\x0c\n\x05\x06\0\x02\0\x03\x12\x03\
-    \x08;@\n\n\n\x02\x04\0\x12\x04\x0c\0\x11\x01\n\n\n\x03\x04\0\x01\x12\x03\
-    \x0c\x08\x1f\n\x0b\n\x04\x04\0\x02\0\x12\x03\r\x04\x13\n\x0c\n\x05\x04\0\
-    \x02\0\x05\x12\x03\r\x04\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\r\t\x0e\
-    \n\x0c\n\x05\x04\0\x02\0\x03\x12\x03\r\x11\x12\n\x0b\n\x04\x04\0\x02\x01\
-    \x12\x03\x0e\x04\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x0e\x04\n\n\
-    \x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0e\x0b\x0f\n\x0c\n\x05\x04\0\x02\
-    \x01\x03\x12\x03\x0e\x12\x13\n(\n\x04\x04\0\x02\x02\x12\x03\x10\x04\x14\
+    t\x18\x02\x20\x01(\rR\x04part\"G\n\tGetOidTxn\x12\x10\n\x03tid\x18\x01\
+    \x20\x01(\x04R\x03tid\x12\x10\n\x03oid\x18\x02\x20\x01(\tR\x03oid\x12\
+    \x16\n\x06update\x18\x03\x20\x01(\x08R\x06update\"\x82\x01\n\x05State\
+    \x12\x14\n\x05state\x18\x01\x20\x01(\x0cR\x05state\x12\x0e\n\x02of\x18\
+    \x02\x20\x01(\tR\x02of\x12\x1b\n\tparent_id\x18\x03\x20\x01(\tR\x08paren\
+    tId\x12\x0e\n\x02id\x18\x04\x20\x01(\tR\x02id\x12\x12\n\x04type\x18\x05\
+    \x20\x01(\tR\x04type\x12\x12\n\x04otid\x18\x06\x20\x01(\tR\x04otid2z\n\
+    \x0bTransaction\x12>\n\x10StartTransaction\x12\x1c.gos.StartTransactionR\
+    equest\x1a\n.gos.TxnId\"\0\x12+\n\x0bGetOidState\x12\x0e.gos.GetOidTxn\
+    \x1a\n.gos.State\"\0J\xe4\x08\n\x06\x12\x04\0\0&\x01\n/\n\x01\x0c\x12\
+    \x03\0\0\x12\"%\x20import\x20\"google/protobuf/any.proto\";\n\n\x08\n\
+    \x01\x02\x12\x03\x03\0\x0c\n\n\n\x02\x06\0\x12\x04\x05\0\n\x01\n\n\n\x03\
+    \x06\0\x01\x12\x03\x05\x08\x13\n'\n\x04\x06\0\x02\0\x12\x03\x08\x04D\x1a\
+    \x1a\x20Starts\x20a\x20new\x20transaction\n\n\x0c\n\x05\x06\0\x02\0\x01\
+    \x12\x03\x08\x08\x18\n\x0c\n\x05\x06\0\x02\0\x02\x12\x03\x08\x190\n\x0c\
+    \n\x05\x06\0\x02\0\x03\x12\x03\x08;@\n\x0b\n\x04\x06\0\x02\x01\x12\x03\t\
+    \x041\n\x0c\n\x05\x06\0\x02\x01\x01\x12\x03\t\x08\x13\n\x0c\n\x05\x06\0\
+    \x02\x01\x02\x12\x03\t\x14\x1d\n\x0c\n\x05\x06\0\x02\x01\x03\x12\x03\t(-\
+    \n\n\n\x02\x04\0\x12\x04\r\0\x12\x01\n\n\n\x03\x04\0\x01\x12\x03\r\x08\
+    \x1f\n\x0b\n\x04\x04\0\x02\0\x12\x03\x0e\x04\x13\n\x0c\n\x05\x04\0\x02\0\
+    \x05\x12\x03\x0e\x04\x08\n\x0c\n\x05\x04\0\x02\0\x01\x12\x03\x0e\t\x0e\n\
+    \x0c\n\x05\x04\0\x02\0\x03\x12\x03\x0e\x11\x12\n\x0b\n\x04\x04\0\x02\x01\
+    \x12\x03\x0f\x04\x14\n\x0c\n\x05\x04\0\x02\x01\x05\x12\x03\x0f\x04\n\n\
+    \x0c\n\x05\x04\0\x02\x01\x01\x12\x03\x0f\x0b\x0f\n\x0c\n\x05\x04\0\x02\
+    \x01\x03\x12\x03\x0f\x12\x13\n(\n\x04\x04\0\x02\x02\x12\x03\x11\x04\x14\
     \x1a\x1brepeated\x20string\x20roles\x20=\x203;\n\n\x0c\n\x05\x04\0\x02\
-    \x02\x05\x12\x03\x10\x04\n\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x10\x0b\
-    \x0f\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x10\x12\x13\n\n\n\x02\x04\x01\
-    \x12\x04\x13\0\x16\x01\n\n\n\x03\x04\x01\x01\x12\x03\x13\x08\r\n\x0b\n\
-    \x04\x04\x01\x02\0\x12\x03\x14\x04\x13\n\x0c\n\x05\x04\x01\x02\0\x05\x12\
-    \x03\x14\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x14\x0b\x0e\n\x0c\n\
-    \x05\x04\x01\x02\0\x03\x12\x03\x14\x11\x12\n\x0b\n\x04\x04\x01\x02\x01\
-    \x12\x03\x15\x04\x14\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x15\x04\n\n\
-    \x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x15\x0b\x0f\n\x0c\n\x05\x04\x01\
-    \x02\x01\x03\x12\x03\x15\x12\x13b\x06proto3\
+    \x02\x05\x12\x03\x11\x04\n\n\x0c\n\x05\x04\0\x02\x02\x01\x12\x03\x11\x0b\
+    \x0f\n\x0c\n\x05\x04\0\x02\x02\x03\x12\x03\x11\x12\x13\n\n\n\x02\x04\x01\
+    \x12\x04\x14\0\x17\x01\n\n\n\x03\x04\x01\x01\x12\x03\x14\x08\r\n\x0b\n\
+    \x04\x04\x01\x02\0\x12\x03\x15\x04\x13\n\x0c\n\x05\x04\x01\x02\0\x05\x12\
+    \x03\x15\x04\n\n\x0c\n\x05\x04\x01\x02\0\x01\x12\x03\x15\x0b\x0e\n\x0c\n\
+    \x05\x04\x01\x02\0\x03\x12\x03\x15\x11\x12\n\x0b\n\x04\x04\x01\x02\x01\
+    \x12\x03\x16\x04\x14\n\x0c\n\x05\x04\x01\x02\x01\x05\x12\x03\x16\x04\n\n\
+    \x0c\n\x05\x04\x01\x02\x01\x01\x12\x03\x16\x0b\x0f\n\x0c\n\x05\x04\x01\
+    \x02\x01\x03\x12\x03\x16\x12\x13\n\n\n\x02\x04\x02\x12\x04\x19\0\x1d\x01\
+    \n\n\n\x03\x04\x02\x01\x12\x03\x19\x08\x11\n\x0b\n\x04\x04\x02\x02\0\x12\
+    \x03\x1a\x04\x13\n\x0c\n\x05\x04\x02\x02\0\x05\x12\x03\x1a\x04\n\n\x0c\n\
+    \x05\x04\x02\x02\0\x01\x12\x03\x1a\x0b\x0e\n\x0c\n\x05\x04\x02\x02\0\x03\
+    \x12\x03\x1a\x11\x12\n\x0b\n\x04\x04\x02\x02\x01\x12\x03\x1b\x04\x13\n\
+    \x0c\n\x05\x04\x02\x02\x01\x05\x12\x03\x1b\x04\n\n\x0c\n\x05\x04\x02\x02\
+    \x01\x01\x12\x03\x1b\x0b\x0e\n\x0c\n\x05\x04\x02\x02\x01\x03\x12\x03\x1b\
+    \x11\x12\n\x0b\n\x04\x04\x02\x02\x02\x12\x03\x1c\x04\x14\n\x0c\n\x05\x04\
+    \x02\x02\x02\x05\x12\x03\x1c\x04\x08\n\x0c\n\x05\x04\x02\x02\x02\x01\x12\
+    \x03\x1c\t\x0f\n\x0c\n\x05\x04\x02\x02\x02\x03\x12\x03\x1c\x12\x13\n\n\n\
+    \x02\x04\x03\x12\x04\x1f\0&\x01\n\n\n\x03\x04\x03\x01\x12\x03\x1f\x08\r\
+    \n\x0b\n\x04\x04\x03\x02\0\x12\x03\x20\x04\x14\n\x0c\n\x05\x04\x03\x02\0\
+    \x05\x12\x03\x20\x04\t\n\x0c\n\x05\x04\x03\x02\0\x01\x12\x03\x20\n\x0f\n\
+    \x0c\n\x05\x04\x03\x02\0\x03\x12\x03\x20\x12\x13\n\x0b\n\x04\x04\x03\x02\
+    \x01\x12\x03!\x04\x12\n\x0c\n\x05\x04\x03\x02\x01\x05\x12\x03!\x04\n\n\
+    \x0c\n\x05\x04\x03\x02\x01\x01\x12\x03!\x0b\r\n\x0c\n\x05\x04\x03\x02\
+    \x01\x03\x12\x03!\x10\x11\n\x0b\n\x04\x04\x03\x02\x02\x12\x03\"\x04\x19\
+    \n\x0c\n\x05\x04\x03\x02\x02\x05\x12\x03\"\x04\n\n\x0c\n\x05\x04\x03\x02\
+    \x02\x01\x12\x03\"\x0b\x14\n\x0c\n\x05\x04\x03\x02\x02\x03\x12\x03\"\x17\
+    \x18\n\x0b\n\x04\x04\x03\x02\x03\x12\x03#\x04\x12\n\x0c\n\x05\x04\x03\
+    \x02\x03\x05\x12\x03#\x04\n\n\x0c\n\x05\x04\x03\x02\x03\x01\x12\x03#\x0b\
+    \r\n\x0c\n\x05\x04\x03\x02\x03\x03\x12\x03#\x10\x11\n\x0b\n\x04\x04\x03\
+    \x02\x04\x12\x03$\x04\x14\n\x0c\n\x05\x04\x03\x02\x04\x05\x12\x03$\x04\n\
+    \n\x0c\n\x05\x04\x03\x02\x04\x01\x12\x03$\x0b\x0f\n\x0c\n\x05\x04\x03\
+    \x02\x04\x03\x12\x03$\x12\x13\n\x0b\n\x04\x04\x03\x02\x05\x12\x03%\x04\
+    \x14\n\x0c\n\x05\x04\x03\x02\x05\x05\x12\x03%\x04\n\n\x0c\n\x05\x04\x03\
+    \x02\x05\x01\x12\x03%\x0b\x0f\n\x0c\n\x05\x04\x03\x02\x05\x03\x12\x03%\
+    \x12\x13b\x06proto3\
 ";
 
 static mut file_descriptor_proto_lazy: ::protobuf::lazy::Lazy<::protobuf::descriptor::FileDescriptorProto> = ::protobuf::lazy::Lazy {

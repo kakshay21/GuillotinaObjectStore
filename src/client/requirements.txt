@@ -20,7 +20,7 @@ google-resumable-media==0.5.0
 googleapis-common-protos==1.51.0
 grpcio==1.27.2
 grpcio-tools==1.27.2
-guillotina==6.0.0b2.dev0
+guillotina
 h11==0.9.0
 httptools==0.1.1
 idna==2.9
