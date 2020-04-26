@@ -11,7 +11,14 @@ guillotina serve
 ```
 curl -i -X POST http://localhost:8080/@foobar --user root:root
 ```
+* it's curently pulling data from the rocksDB using gRPC network call.
+# Note:
+Any change you make in the guillotina, you have to reload the package using following commands
 
+```
+python setup.py install
+guillotina serve
+```
 # More on Guillotina
 
 ```
