@@ -1,4 +1,4 @@
-# gobject (Guillotina Object Server)
+# Guillotina Object Store
 
 ## Setting up
 ```
