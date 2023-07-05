@@ -1,3 +1,3 @@
 aiohttp
-grpcio==1.28.1
+grpcio==1.53.0
 guillotina
